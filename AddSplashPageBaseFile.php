@@ -1,4 +1,8 @@
 <?php
+/************RUN THE FILE************/
+// I am running this file in Visual Studio Code. This will create or update 4 files in your project
+//1. Add "AddSplashPageBaseFile.php to your root project folder
+//2. Type the following in a new terminal: php .\AddSplashPageBaseFile.php
 
 $splash_view_data = '
 <div id="hSplash" class="pageLoad">
@@ -10,7 +14,7 @@ $splash_view_data = '
         <div class="slidr__layer"></div>
     </div>
 </div>';
-$splash_view = fopen(__DIR__.'\view\splash.php', "w");
+$splash_view = fopen(__DIR__ .'\view\splash.php', "w");
 fwrite($splash_view, $splash_view_data);
 
 $splash_function_data = '
@@ -30,8 +34,7 @@ $splash_function = fopen(__DIR__.'\functions.php', "a");
 fwrite($splash_function, $splash_function_data);
 
 $splash_css_data = '
-<?php 
-//add splash code
+/*add splash code*/
 .bgSplash {position: fixed;z-index: 500;opacity: 1;visibility: visible;pointer-events: none;transition-delay: .5s;background: #dd6b13;transition: visibility opacity .5s;
     top: 0;bottom: 0;left: 0;right: 0;}
   .pageLoad .logo {opacity: 1; visibility: visible;}
@@ -54,13 +57,12 @@ $splash_css_data = '
     .slidr__layer+.slidr__layer {
       background: #7e110c;
   }
-?>
 ';
-$splash_css = fopen(__DIR__.'\splash.php', "w");
+$splash_css = fopen(__DIR__.'\css\splash.css', "w");
 fwrite($splash_css, $splash_css_data);
 
 $splash_header_data = '
-//add this to in the body tag of your header.php if it is not already added
+<!--add this to in the body tag of your header.php if it is not already added-->
 <?php echo do_shortcode("[display_splash]");?>
 ';
 $splash_header = fopen(__DIR__.'\header.php', "a");
