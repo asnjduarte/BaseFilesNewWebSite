@@ -4,6 +4,20 @@
 //1. Add "AddSplashPageBaseFile.php to your root project folder
 //2. Type the following in a new terminal: php .\AddSplashPageBaseFile.php
 
+$splash_js_data = '
+
+/*add this to the document ready section of footerbundle.js*/
+  $(\'#hSplash\').on(\'animationend webkitAnimationEnd\', function() {
+      $("#gBox1").removeClass("dNoP");
+      $("#gBox1").addClass("pLoad");
+      $("#gBox").removeClass("dNoP");
+      $("#gBox").addClass("pLoad");
+      $("#hSplash").addClass("dNo");
+  });
+';
+$splash_js = fopen(__DIR__.'\js\footerBundle.js', "a");
+fwrite($splash_js, $splash_js_data);
+
 $splash_view_data = '
 <div id="hSplash" class="pageLoad">
     <div class="bgSplash">
@@ -14,7 +28,11 @@ $splash_view_data = '
         <div class="slidr__layer"></div>
     </div>
 </div>';
-$splash_view = fopen(__DIR__ .'\view\splash.php', "w");
+$splash_view_dir = __DIR__.'\view';
+if (!file_exists($splash_view_dir)) {
+  mkdir($splash_view_dir, 0777, true);
+}
+$splash_view = fopen($splash_view_dir ."\splash.php", "w");
 fwrite($splash_view, $splash_view_data);
 
 $splash_function_data = '
