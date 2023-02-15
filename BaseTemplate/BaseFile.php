@@ -52,6 +52,31 @@ echo "Folders have been created";
 
 $function_data = '
 <?php
+/*Limit excerpt length*/
+function tn_custom_excerpt_length( $length ) {
+    return 10;
+    }
+    add_filter( \'excerpt_length\', \'tn_custom_excerpt_length\', 999 );
+/*Limit excerpt length*/
+
+/****************************remove admin bar*************************/
+function remove_admin_bar() {
+if (!current_user_can(\'administrator\') && !is_admin()) {
+  show_admin_bar(false);
+}
+}
+add_action(\'after_setup_theme\', \'remove_admin_bar\');
+/****************************remove admin bar*************************/
+
+/**Block access to wp-admin for non admin users**/
+function block_wp_admin() {
+	if ( is_admin() && ! current_user_can( \'administrator\' ) && ! ( defined( \'DOING_AJAX\' ) && DOING_AJAX ) ) {
+		wp_safe_redirect( home_url() );
+		exit;
+	}
+}
+add_action( \'admin_init\', \'block_wp_admin\' );
+/**Block access to wp-admin for non admin users**/
 
 function my_scripts() {
 
@@ -155,7 +180,7 @@ $header_data = '
 
 <body>
     <div id="gBox1" class="dNoP">
-        
+        <!--add menu code here -->
     </div>
 ';
 $header = fopen(__DIR__.'\header.php', "w");
