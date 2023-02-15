@@ -180,7 +180,8 @@ $header_data = '
 
 <body>
     <div id="gBox1" class="dNoP">
-        <!--add menu code here -->
+        <?php echo do_shortcode(\'[display_menu]\' ); ?>
+        <?php echo do_shortcode(\'[display_mobile_menu]\');?>
     </div>
 ';
 $header = fopen(__DIR__.'\header.php', "w");
