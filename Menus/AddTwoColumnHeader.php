@@ -1,14 +1,8 @@
 <?php 
 
-$header_head_data = '
-<?php echo do_shortcode( \'[display_two_column_menu]\' ); ?>
-';
-$header_head = fopen(__DIR__.'\header.php', "a");
-fwrite($header_head, $header_head_data);
-
 $header_func_data = '
 <?php //two column header menu code
-function fetch_tcm(){add_shortcode(\'display_two_column_menu\', \'fetch_two_column\');} 
+function fetch_tcm(){add_shortcode(\'display_menu\', \'fetch_two_column\');} 
 add_action(\'init\', \'fetch_tcm\');
 function fetch_two_column() {
     ob_start(); 
