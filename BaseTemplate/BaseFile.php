@@ -697,65 +697,8 @@ class Country {
 $footer_model_country = fopen(__DIR__.'\model\country\Country.php', "w");
 fwrite($footer_model_country, $footer_model_country_data);
 
-$footer_controller_data = '
-<?php 
-    include_once get_theme_file_path(\'model/commonFunctions/Factory.php\'); 
-    $factory = new Factory();
-    $company = $factory->createCompany();
-    $companyInfo = $company->setCompanyInfo();
-
-?>
-';
-$footer_controller = fopen(__DIR__.'\controller\Footercontroller.php', "w");
-fwrite($footer_controller, $footer_controller_data);
-
 $footer_data = '
-<?php include_once get_theme_file_path(\'controller/FooterController.php\');  ?>
-<footer class="site-footer">
-    <div class="site-footer__inner">
-        <div class="flx mbFlxdc">
-            <div class="flx1">
-                <h3 class="w80"><a href="/?>"><strong><?php echo $companyInfo[0]->getName();?></strong></a></h3>
-                <?php foreach ($companyInfo as $k => $v) { 
-                    if ($v->getType() == 1) { //type 1 = contact?>
-                        <div class="flx">
-                            <div class="ftbx30 <?php echo $v->getImg()?> cnnr"></div>
-                            <a class="ml5 mt5" href="<?php echo $v->getLink()?>"><?php echo $v->getValue()?></a><br>
-                        </div>
-                <? }} ?>
-            </div>
-            <div class="flx1">
-                <h3>Explorar</h3>
-                <nav>
-                    <ul>
-                        <?php foreach ($companyInfo as $k => $v) { 
-                            if ($v->getType() == 0) { //type 0 = miscellaneous?>
-                                <li><a href="<?php echo $v->getLink()?>" target="_blank"><?php echo $v->getValue()?></a></li>
-                        <? }} ?>
-                    </ul>
-                </nav>
-            </div>
-            <div class="flx1">
-                <h3>Conectar con nosotros</h3>
-                <nav>
-                    <ul class="social-icons-list group">
-                        <?php foreach ($companyInfo as $k => $v) { 
-                            if ($v->getType() == 2) { //type 2 = contact?>
-                                <li>
-                                    <a href="<?php echo $v->getLink()?>" target="_blank">
-                                        <div class="ftbx30 <?php echo $v->getImg()?> cnnr"></div>
-                                    </a>
-                                </li>
-                        <? }} ?>
-                    </ul>
-                </nav>
-            </div>
-        </div>
-    </div>
-</footer>
-<?php wp_footer(); ?>
-</body>
-</html>
+<?php echo do_shortcode(\'[display_footer]\' ); ?>
 ';
 $footer = fopen(__DIR__.'\footer.php', "w");
 fwrite($footer, $footer_data);
