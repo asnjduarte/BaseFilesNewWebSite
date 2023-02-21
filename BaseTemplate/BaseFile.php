@@ -184,10 +184,7 @@ $header_data = '
 </head>
 
 <body>
-    <div id="gBox1" class="dNoP">
-        <?php echo do_shortcode(\'[display_menu]\' ); ?>
-        <?php echo do_shortcode(\'[display_mobile_menu]\');?>
-    </div>
+
 ';
 $header = fopen(__DIR__.'\header.php', "w");
 fwrite($header, $header_data);
