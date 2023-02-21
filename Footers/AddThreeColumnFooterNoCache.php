@@ -10,7 +10,7 @@ $three_column_footer_no_cache_data = '
                 <?php foreach ($companyInfo as $k => $v) { 
                     if ($v->getType() == 1) { //type 1 = contact?>
                         <div class="flx">
-                            <div class="ftbx30 <?php echo $v->getImg()?> cnnr"></div>
+                            <div class="bx30 <?php echo $v->getImg()?> cnnr"></div>
                             <a class="ml5 mt5" href="<?php echo $v->getLink()?>"><?php echo $v->getValue()?></a><br>
                         </div>
                 <? }} ?>
@@ -34,7 +34,7 @@ $three_column_footer_no_cache_data = '
                             if ($v->getType() == 2) { //type 2 = contact?>
                                 <li>
                                     <a href="<?php echo $v->getLink()?>" target="_blank">
-                                        <div class="ftbx30 <?php echo $v->getImg()?> cnnr"></div>
+                                        <div class="bx30 <?php echo $v->getImg()?> cnnr"></div>
                                     </a>
                                 </li>
                         <? }} ?>
@@ -53,9 +53,9 @@ fwrite($three_column_footer_view, $three_column_footer_no_cache_data);
 
 $three_column_footer_no_cache_function_data = '
 <?php //three column footer no caching
-function fetch_fwc(){add_shortcode(\'display_footer\', \'fetch_footer_with_caching\');} 
+function fetch_fwc(){add_shortcode(\'display_footer\', \'fetch_footer_no_caching\');} 
 add_action(\'init\', \'fetch_fwc\');
-function fetch_footer_with_caching() {
+function fetch_footer_no_caching() {
     ob_start(); 
     include_once get_theme_file_path(\'view/ThreeColumnFooterFromDbNoCache.php\'); 
     return ob_get_clean();
