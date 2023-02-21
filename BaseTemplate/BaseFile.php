@@ -118,7 +118,7 @@ h3 {margin-block-end: 5px;font-size:32px;margin-block-start: 0px;}
 h4 {font-size:24px;font-weight:bold;}
 img {max-width: 100%;height: auto;}
 ul {padding: 0px;}
-.ftbx30 img{width:30px;	height:30px;}
+.ftbx30 img, .bx30{width:30px;	height:30px;}
 .h700 {height:700px;}
 .h800 {height:800px;}
 .w50 {width: 50%;}
