@@ -105,6 +105,7 @@ fwrite($function, $function_data);
 
 
 $css_data = '
+
 /*Theme Name: Maranatha
 Author: Nathan
 Version: 1.2
@@ -117,10 +118,15 @@ h3 {margin-block-end: 5px;font-size:32px;margin-block-start: 0px;}
 h4 {font-size:24px;font-weight:bold;}
 img {max-width: 100%;height: auto;}
 ul {padding: 0px;}
-.ftbx30 img, .ftbx30{width:30px;	height:30px;}
+.ftbx30 img{width:30px;	height:30px;}
+.h700 {height:700px;}
+.h800 {height:800px;}
 .w50 {width: 50%;}
+.w60 {width:60%;}
 .w80 {width: 80%;}
 .w100 {width: 100%;}
+.h100 {height:100%;}
+.bx100 {height:100%; width:100%;}
 .flx {display: flex;}
 .flx1 {flex:1;}
 .jcc {justify-content: center;}
@@ -135,6 +141,7 @@ li {list-style: none;padding: 5px;}
 .pLoad .mv-rgt0 {animation:moveInFromTopOpac 1s forwards;}
 .cnnr {background-size:contain; background-repeat: no-repeat;}
 .cvnr {background-size:cover; background-repeat: no-repeat;}
+.trans300 {transition: 300ms;}
 /*footer*/
 .site-footer {padding: 2rem 20px 3.5rem 20px;background-image: linear-gradient(#FFF, #ECECEC);}
 .site-footer__inner {border-top: 1px dotted #DEDEDE;padding-top: 3.5rem;}
@@ -142,18 +149,17 @@ li {list-style: none;padding: 5px;}
 .social-icons-list li {-webkit-box-flex: 1;-ms-flex: 1;flex: 1;}
 .social-icons-list li a:hover {opacity: .75;}
 .social-icons-list img {width:30%;}
-.wh {background-image:url(\'\');}
-.em {background-image:url(\'\');}
-.fb {background-image:url(\'\');}
-.yt {background-image:url(\'\');}
-.tyc {background-image:url(\'\');}
-.tyc {background-image:url(\'\');}
-.in {background-image:url(\'\');}
+.wh {background-image:url('');}
+.em {background-image:url('');}
+.fb {background-image:url('');}
+.yt {background-image:url('');}
+.tyc {background-image:url('');}
+.tyc {background-image:url('');}
+.in {background-image:url('');}
 /*end footer*/
 @media screen and (max-width: 720px) {
     .mbFlxdc {flex-direction: column;}
 }
-
 ';
 $css = fopen(__DIR__.'\style.css', "w");
 fwrite($css, $css_data);
