@@ -88,4 +88,13 @@ $header_data = '
 $header = fopen(__DIR__.'\view\TwoColumnHeader.php', "w");
 fwrite($header, $header_data);
 
+$header_head_data = '
+<div id="gBox1" class="pLoad">
+<?php echo do_shortcode(\'[display_menu]\' ); ?>
+<?php echo do_shortcode(\'[display_mobile_menu]\');?>
+</div>
+';
+$header_head = fopen(__DIR__.'\header.php', "a");
+fwrite($header_head, $header_head_data);
+
 ?>
