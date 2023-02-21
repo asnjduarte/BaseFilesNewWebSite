@@ -149,13 +149,13 @@ li {list-style: none;padding: 5px;}
 .social-icons-list li {-webkit-box-flex: 1;-ms-flex: 1;flex: 1;}
 .social-icons-list li a:hover {opacity: .75;}
 .social-icons-list img {width:30%;}
-.wh {background-image:url('');}
-.em {background-image:url('');}
-.fb {background-image:url('');}
-.yt {background-image:url('');}
-.tyc {background-image:url('');}
-.tyc {background-image:url('');}
-.in {background-image:url('');}
+.wh {background-image:url(\'\');}
+.em {background-image:url(\'\');}
+.fb {background-image:url(\'\');}
+.yt {background-image:url(\'\');}
+.tyc {background-image:url(\'\');}
+.tyc {background-image:url(\'\');}
+.in {background-image:url(\'\');}
 /*end footer*/
 @media screen and (max-width: 720px) {
     .mbFlxdc {flex-direction: column;}
