@@ -149,13 +149,12 @@ li {list-style: none;padding: 5px;}
 .social-icons-list li {-webkit-box-flex: 1;-ms-flex: 1;flex: 1;}
 .social-icons-list li a:hover {opacity: .75;}
 .social-icons-list img {width:30%;}
-.wh {background-image:url(\'\');}
-.em {background-image:url(\'\');}
-.fb {background-image:url(\'\');}
-.yt {background-image:url(\'\');}
-.tyc {background-image:url(\'\');}
-.tyc {background-image:url(\'\');}
-.in {background-image:url(\'\');}
+.wh {background-image:url(\'/wp-content/uploads/2023/images/social/whats.png\');}
+.em {background-image:url(\'/wp-content/uploads/2023/images/social/email.png\');}
+.fb {background-image:url(\'/wp-content/uploads/2023/images/social/fb.png\');}
+.yt {background-image:url(\'/wp-content/uploads/2023/images/social/youtube.png\');}
+.tyc {background-image:url(\'/wp-content/uploads/2023/images/social/papers.png\');}
+.in {background-image:url(\'/wp-content/uploads/2023/images/social/inst.png\');}
 /*end footer*/
 @media screen and (max-width: 720px) {
     .mbFlxdc {flex-direction: column;}
