@@ -36,7 +36,7 @@ $three_column_footer_with_cache_data = '
                             if ($v[3] == 2) { //type 2 = contact?>
                                 <li>
                                     <a href="<?php echo $v[2]?>" target="_blank">
-                                        <div class="bx30 <?php echo $v[1]?> cnnr"></div>
+                                        <div class="bx30 <?php echo $v[4]?> cnnr"></div>
                                     </a>
                                 </li>
                         <? }} ?>
