@@ -137,12 +137,14 @@ fwrite($ddsmwp_view, $ddsmwp_view_data);
 
 $hmList = array("inicio", "nuestra_fe", "acerca_de_nosotros", "ingresar", "ministerios");
 $color_data = "";
+$background_data = "";
 foreach ($hmList as $k => $v) {
     $color_data = '#r0__' . $v . ', .r0__' . $v . " {background-color:white;}" . PHP_EOL . $color_data ;
-    $background_data = '.' . $v . '{background-image:url(\'/wp-content/uploads/2023/02/fb2.png\');}';
+    $background_data = '.' . $v . '{background-image:url(\'/wp-content/uploads/2023/02/' . $v . '.jpg\');}' . PHP_EOL . $background_data;
 }
 $drop_down_side_general_color_css = fopen(__DIR__.'\css\DropDownSideMenuWithPhoto.css', "a");
 fwrite($drop_down_side_general_color_css, $color_data);
+fwrite($drop_down_side_general_color_css, $background_data);
 
 $ddsmwp_function_data = '
 <?php 
