@@ -52,6 +52,37 @@ echo "Folders have been created";
 
 $function_data = '
 <?php
+
+/** Basic Content Security Policy**/
+function pagely_security_headers( $headers ) {
+    $headers[\'X-XSS-Protection\'] = \'1; mode=block\';
+    $headers[\'X-Content-Type-Options\'] = \'nosniff\';
+    return $headers;
+}
+
+add_filter( \'wp_headers\', \'pagely_security_headers\' );
+add_action( \'send_headers\', \'send_frame_options_header\', 10, 0 ); //x-frame-options
+/** End CSP **/
+
+/** Disable word press feed **/
+function wpb_disable_feed() {
+wp_die( __(\'No feed available,please visit our <a href="\'. get_bloginfo(\'url\') .\'">homepage</a>!\') );
+}
+ 
+add_action(\'do_feed\', \'wpb_disable_feed\', 1);
+add_action(\'do_feed_rdf\', \'wpb_disable_feed\', 1);
+add_action(\'do_feed_rss\', \'wpb_disable_feed\', 1);
+add_action(\'do_feed_rss2\', \'wpb_disable_feed\', 1);
+add_action(\'do_feed_atom\', \'wpb_disable_feed\', 1);
+add_action(\'do_feed_rss2_comments\', \'wpb_disable_feed\', 1);
+add_action(\'do_feed_atom_comments\', \'wpb_disable_feed\', 1);
+/** End **/
+
+/** Enables the HTTP Strict Transport Security (HSTS) header in WordPress. */
+function enable_strict_transport_hsts_preload() {header( "Strict-Transport-Security: max-age=31536000; includeSubDomains; preload" );}
+add_action(\'send_headers\', \'enable_strict_transport_hsts_preload\' );
+/** End **/
+
 /*Limit excerpt length*/
 function tn_custom_excerpt_length( $length ) {
     return 10;
