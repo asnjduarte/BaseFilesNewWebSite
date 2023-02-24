@@ -54,7 +54,7 @@ class TestPolicy extends TestCase {
 ?>
 
 ';
-$test_policy = fopen(__DIR__.'\unit\TestPolicy.php', "w");
+$test_policy = fopen(__DIR__.'\tests\unit\TestPolicy.php', "w");
 fwrite($test_policy, $test_policy_data);
 
 $test_policy_model_data = '
@@ -137,7 +137,7 @@ class TestPolicyModel {
 }
 ?>
 ';
-$test_policy_model = fopen(__DIR__.'\model\company\TestPolicyModel.php', "w");
+$test_policy_model = fopen(__DIR__.'\tests\model\company\TestPolicyModel.php', "w");
 fwrite($test_policy_model, $test_policy_model_data);
 
 $test_factory_data = '
@@ -150,7 +150,7 @@ public static function createTestPolicy(){
     return new TestPolicyModel($test->pdo);
 }
 ';
-$test_factory = fopen(__DIR__.'\model\commonFunctions\TestFactory.php', "a");
+$test_factory = fopen(__DIR__.'\tests\model\commonFunctions\TestFactory.php', "a");
 fwrite($test_factory, $test_factory_data);
 
 ?>
