@@ -16,34 +16,6 @@ if ($conn->connect_error) {
 
 // sql to create table
 $sqlList = array ();
-$sql4 =
-"
-CREATE PROCEDURE `sp_fetch_policy`(IN `plt_id` tinyint)
-BEGIN
-SELECT p.name as policyName, p.description as policyDescription, gpc.name as policyTermName, gpc.description as policyTermDescription
-FROM ". $table_prefix . "_policy_link_terms plt LEFT JOIN ". $table_prefix . "_policy p
-  ON plt.policyId = p.policyId LEFT JOIN ". $table_prefix . "_generic_policy_terms gpc
-  ON plt.genericPolicyTermId = gpc.genericPolicyTermId
-WHERE plt.policyId = plt_id;
-END
-";
-array_push($sqlList, $sql4);
-
-$sql9 =
-"
-CREATE TABLE `". $table_prefix . "_generic_policy_terms` (
-  `genericPolicyTermId` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(40) NOT NULL,
-  `description` text NOT NULL,
-  `createDate` datetime NOT NULL,
-  `updateDate` datetime NOT NULL,
-  `lastUpdatedByUserId` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`genericPolicyTermId`),
-  KEY `lastUpdatedByUserId` (`lastUpdatedByUserId`),
-  CONSTRAINT `". $table_prefix . "_generic_policy_terms_ibfk_1` FOREIGN KEY (`lastUpdatedByUserId`) REFERENCES `". $table_prefix . "_users` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-";
-array_push($sqlList, $sql9);
 
 $sql10 =
 "
@@ -55,48 +27,12 @@ INSERT INTO `". $table_prefix . "_generic_policy_terms` (`genericPolicyTermId`, 
 ";
 array_push($sqlList, $sql10);
 
-$sql5 =
-"
-CREATE TABLE `". $table_prefix . "_policy` (
-  `policyId` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(35) NOT NULL,
-  `description` text NOT NULL,
-  `createDate` datetime NOT NULL,
-  `updateDate` datetime NOT NULL,
-  `lastUpdatedByUserId` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`policyId`),
-  KEY `lastUpdatedByUserId` (`lastUpdatedByUserId`),
-  CONSTRAINT `". $table_prefix . "_policy_ibfk_1` FOREIGN KEY (`lastUpdatedByUserId`) REFERENCES `". $table_prefix . "_users` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-";
-array_push($sqlList, $sql5);
-
 $sql6 =
 "
 INSERT INTO `". $table_prefix . "_policy` (`policyId`, `name`, `description`, `createDate`, `updateDate`, `lastUpdatedByUserId`) VALUES
 (1,	'Policia de Privacidad',	'La presente política de privacidad establece los términos en que " . $companyName . " usa y protege la información que es proporcionada por sus usuarios al momento de utilizar su sitio web. Esta compañía está comprometida con la seguridad de los datos de sus usuarios. Cuando le pedimos llenar los campos de información personal con la cual usted pueda ser identificado, lo hacemos asegurando que sólo se emplea de acuerdo a los términos de este documento. Sin embargo, esta Política de Privacidad puede cambiar con el tiempo o ser actualizada por lo que le recomendamos y enfatizamos revisar continuamente esta página para asegurarse que está de acuerdo con dichos cambios.\"',	'2023-02-23 14:19:39',	'2023-02-23 14:19:39',	1)
 ";
 array_push($sqlList, $sql6);
-
-$sql7 =
-"
-CREATE TABLE `". $table_prefix . "_policy_link_terms` (
-  `policyLinkId` int(11) NOT NULL AUTO_INCREMENT,
-  `policyId` int(11) NOT NULL,
-  `genericPolicyTermId` int(11) NOT NULL,
-  `createDate` datetime NOT NULL,
-  `updateDate` datetime NOT NULL,
-  `lastUpdatedByUserId` bigint(20) unsigned NOT NULL,
-  PRIMARY KEY (`policyLinkId`),
-  KEY `policyId` (`policyId`),
-  KEY `genericPolicyTermId` (`genericPolicyTermId`),
-  KEY `lastUpdatedByUserId` (`lastUpdatedByUserId`),
-  CONSTRAINT `wp_policy_link_terms_ibfk_1` FOREIGN KEY (`policyId`) REFERENCES `wp_policy` (`policyId`),
-  CONSTRAINT `wp_policy_link_terms_ibfk_2` FOREIGN KEY (`genericPolicyTermId`) REFERENCES `wp_generic_policy_terms` (`genericPolicyTermId`),
-  CONSTRAINT `wp_policy_link_terms_ibfk_3` FOREIGN KEY (`lastUpdatedByUserId`) REFERENCES `wp_users` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-";
-array_push($sqlList, $sql7);
 
 $sql8 =
 "
@@ -110,9 +46,9 @@ array_push($sqlList, $sql8);
 
 foreach ($sqlList as $k => $v) {
     if ($conn->query($v) === TRUE) {
-        echo "Tables created successfully" . PHP_EOL;
+        echo "Tables inserted successfully" . PHP_EOL;
       } else {
-        echo "Error creating table: " . $conn->error . " " . PHP_EOL;
+        echo "Error inserting info: " . $conn->error . " " . PHP_EOL;
       }
 }
 
