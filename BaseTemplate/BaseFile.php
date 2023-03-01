@@ -136,11 +136,11 @@ fwrite($function, $function_data);
 
 
 $css_data = '
-
 /*Theme Name: Maranatha
 Author: Nathan
 Version: 1.2
 */
+fieldset {border:none;}
 a {text-decoration:none;transition: 300ms;color: #dd6b13;}
 a:hover, a:focus {color: #dd6b13;}
 body {color: #dd6b13;font-family: Montserrat;overflow-x: hidden;position: relative;margin: 0 auto !important;float: none !important; font-size:18px;}
@@ -155,24 +155,42 @@ ul {padding: 0px;}
 .w50 {width: 50%;}
 .w60 {width:60%;}
 .w80 {width: 80%;}
-.w100 {width: 100%;}
+input[type="text"], .w100 {width: 100%;}
 .h100 {height:100%;}
 .bx100 {height:100%; width:100%;}
 .flx {display: flex;}
 .flx1 {flex:1;}
+.fwrap {flex-wrap: wrap;}
+.flxdc {flex-direction: column;}
 .jcc {justify-content: center;}
+.aic {align-items: center;}
+.rel {position:relative;}
 .abs {position: absolute;}
+.z1{z-index: 1;}
 .z3 {z-index: 3;}
+.baf {background-attachment: fixed;}
 li {list-style: none;padding: 5px;}
 .dNoP {display: none!important;}
 .dNo {display: none;}
+.ma {margin:auto;}
 .mt5 {margin-top:5px;}
 .ml5 {margin-left:5px;}
+.p10 {padding:10px;}
+.p20 {padding:20px;}
+.pt3 {padding-top:3vw;}
+.o1 {opacity:.1;}
 .mv-rgt0 {visibility: hidden;}
 .pLoad .mv-rgt0 {animation:moveInFromTopOpac 1s forwards;}
 .cnnr {background-size:contain; background-repeat: no-repeat;}
 .cvnr {background-size:cover; background-repeat: no-repeat;}
 .trans300 {transition: 300ms;}
+.gBx {text-transform: uppercase; font-size: 2vmin; border: 3px solid #dd6b13; margin-top: 1vw; letter-spacing: .1em; line-height: 1;
+    transform: translate3d(0.5vmin,-0.5vmin,0); transition: all .1s linear;}
+.gBoxShadow, input[type="text"] {box-shadow: 11px 11px 10px -9px #dd6b13;border-style: solid;border-color: lightgrey;padding: 1vw 0vw;border-radius: 5px;
+        border-width: thin;background-color: #f2f2f2;color: #dd6b13;transition: 300ms;}
+.gBoxShadow:hover, input[type="text"]:hover {box-shadow: 11px 11px 10px -9px #7e110c;transition: 300ms;}
+.gBxShd2Wht {padding: 2vmin 2vmin 1.8vmin; box-shadow: -0.5vmin 0.5vmin 0 rgb(255 255 255 / 50%);}
+.gBxShd2Wht:hover {transform: translate3d(1vmin,-1vmin,0);box-shadow: -1vmin 1vmin 0 #7e110c;background: #fff; color: #7e110c;}
 /*footer*/
 .site-footer {padding: 2rem 20px 3.5rem 20px;background-image: linear-gradient(#FFF, #ECECEC);}
 .site-footer__inner {border-top: 1px dotted #DEDEDE;padding-top: 3.5rem;}
@@ -186,9 +204,23 @@ li {list-style: none;padding: 5px;}
 .yt {background-image:url(\'/wp-content/uploads/2023/images/social/youtube.png\');}
 .tyc {background-image:url(\'/wp-content/uploads/2023/images/social/papers.png\');}
 .in {background-image:url(\'/wp-content/uploads/2023/images/social/inst.png\');}
+.logoFoto {background-image:url(\'/wp-content/uploads/2023/images/social/tdclogo.jpg\');}
 /*end footer*/
-@media screen and (max-width: 720px) {
-    .mbFlxdc {flex-direction: column;}
+@media screen and (min-width: 1600px) {
+    .lf1, button, input[type="search"], input[type="text"], input[type="button"], input[type="password"] {font-size: 1.2vw;}
+    .ftbx30 img, .bx30 {width: 1.6vw;height: 1.6vw;}
+}
+@media screen and (max-width:1024px) {
+	.iph_dNo {display: none;}
+	.iph_w90 {width:90%;}
+    .ip_h100 {height:100%;}
+    .iph_ha {height: auto;}
+}
+@media screen and (max-width: 820px) {
+    .mb_Flxdc {flex-direction: column;}
+    .mb_ha {height:auto;}
+    .mb_rel {position:relative;}
+    .mb_w100 {width:100%;}
 }
 ';
 $css = fopen(__DIR__.'\style.css', "w");
