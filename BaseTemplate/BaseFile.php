@@ -191,6 +191,13 @@ li {list-style: none;padding: 5px;}
 .gBoxShadow:hover, input[type="text"]:hover {box-shadow: 11px 11px 10px -9px #7e110c;transition: 300ms;}
 .gBxShd2Wht {padding: 2vmin 2vmin 1.8vmin; box-shadow: -0.5vmin 0.5vmin 0 rgb(255 255 255 / 50%);}
 .gBxShd2Wht:hover {transform: translate3d(1vmin,-1vmin,0);box-shadow: -1vmin 1vmin 0 #7e110c;background: #fff; color: #7e110c;}
+.lft-rgt {opacity: 0; -webkit-transform: translateX(-4em) rotateZ(0deg); transform: translateX(-4em) rotateZ(0deg);}
+.tt {transition: transform 4s .5s cubic-bezier(0,1,.3,1), opacity .25s .25s ease-out; transition: transform 4s .5s cubic-bezier(0,1,.3,1), opacity .25s .25s ease-out, -webkit-transform 4s .25s cubic-bezier(0,1,.3,1)}
+.td50 {transition-delay: 50ms;}
+.td100 {transition-delay: 100ms;}
+.td150 {transition-delay: 150ms;}
+.td200 {transition-delay: 200ms;}
+.td250 {transition-delay: 250ms;}
 /*footer*/
 .site-footer {padding: 2rem 20px 3.5rem 20px;background-image: linear-gradient(#FFF, #ECECEC);}
 .site-footer__inner {border-top: 1px dotted #DEDEDE;padding-top: 3.5rem;}
