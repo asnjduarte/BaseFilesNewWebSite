@@ -789,4 +789,31 @@ $footer_data = '
 $footer = fopen(__DIR__.'\footer.php', "w");
 fwrite($footer, $footer_data);
 
+$sanitize_data = '
+<?php
+class Sanitize {
+    private static $val;
+
+    public function __construct(){}
+
+    public static function cleanNumeric($val){
+        self::$val = preg_replace("/[^0-9()]/", \'\', $val);
+        return self::$val;
+    }
+
+    public static function cleanTextNoNumberNoSpecial($val){
+        self::$val = preg_replace(\'/[^A-Za-záíéóúñÁÍÉÓÚÑ ]/\', \'\', $val);
+        return self::$val;
+    }
+
+    public static function cleanTextSomeSpecial($val) {
+        self::$val = preg_replace(\'/[^A-Za-záíéóúñÁÍÉÓÚÑ!.?-; ]/\', \'\', $val);
+        return self::$val;
+    }
+}
+?>
+';
+$sanitize = fopen(__DIR__.'\model\commonFunctions\Sanitize.php', "w");
+fwrite($sanitize, $sanitize_data);
+
 ?>
