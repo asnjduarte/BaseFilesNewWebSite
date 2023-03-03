@@ -179,7 +179,7 @@ li {list-style: none;padding: 5px;}
 .ma {margin:auto;}
 .mt5 {margin-top:5px;}
 .ml5 {margin-left:5px;}
-.mlr05 {margin-left:.5vw;margin-right:.5vw;}
+.ml05 {margin-left:.5vw;}
 .p10 {padding:10px;}
 .p20 {padding:20px;}
 .pt3 {padding-top:3vw;}
