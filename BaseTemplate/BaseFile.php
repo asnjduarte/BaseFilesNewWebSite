@@ -136,6 +136,8 @@ fwrite($function, $function_data);
 
 
 $css_data = '
+
+
 /*Theme Name: Maranatha
 Author: Nathan
 Version: 1.2
@@ -150,8 +152,10 @@ h4 {font-size:24px;font-weight:bold;}
 img {max-width: 100%;height: auto;}
 ul {padding: 0px;}
 .ftbx30 img, .bx30{width:30px;	height:30px;}
+.h300 {height:300px;}
 .h700 {height:700px;}
 .h800 {height:800px;}
+.w30 {width:30%;}
 .w50 {width: 50%;}
 .w60 {width:60%;}
 .w80 {width: 80%;}
@@ -175,10 +179,12 @@ li {list-style: none;padding: 5px;}
 .ma {margin:auto;}
 .mt5 {margin-top:5px;}
 .ml5 {margin-left:5px;}
+.mlr05 {margin-left:.5vw;margin-right:.5vw;}
 .p10 {padding:10px;}
 .p20 {padding:20px;}
 .pt3 {padding-top:3vw;}
 .o1 {opacity:.1;}
+.ofya {overflow-y: auto;}
 .mv-rgt0 {visibility: hidden;}
 .pLoad .mv-rgt0 {animation:moveInFromTopOpac 1s forwards;}
 .cnnr {background-size:contain; background-repeat: no-repeat;}
@@ -245,11 +251,12 @@ $index = fopen(__DIR__.'\index.php', "w");
 fwrite($index, $index_data);
 
 $header_data = '
-<!DOCTYPE html>
 <html lang="es"	<?php language_attributes(); ?>>
-<?php the_custom_header_markup(); ?>
+<?php the_custom_header_markup();  if(session_id() == '') {session_start();}?>
 <head>
 	<?php wp_head(); ?>
+	<meta name="csrf-token" content="<?php echo $_SESSION[\'token\']; ?>"/>
+	<meta http-equiv="content-type" content="text/html;charset=utf-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -587,7 +594,14 @@ $header_controller_data = '
     $factory = new Factory();
     $hMenu = $factory->createHeaderMenu();
     $hmList = $hMenu->setHeaderMenuData();
-
+    
+    if (empty($_SESSION['token'])) {
+        if (function_exists('mcrypt_create_iv')) {
+            $_SESSION['token'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+        } else {
+            $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
+        }
+    }
 ?>
 ';
 $header_controller = fopen(__DIR__.'\controller\HeaderMenuController.php', "w");
