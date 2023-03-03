@@ -266,21 +266,48 @@ $header_data = '
 $header = fopen(__DIR__.'\header.php', "w");
 fwrite($header, $header_data);
 
-$decrypt_data = '<?php class Decrypt {
-    public static function decryptString($val) {
+$decrypt_data = '
+<?php class Encryption {
+    private $key;
+    private $factory;
+    private $err;
+
+    public function __construct(){
+        global $wpdb;
+        $this->wpdb = $wpdb;
+        $this->factory = new Factory();
+        $this->err = $this->factory->createErr();
+        $this->key = openssl_random_pseudo_bytes(16);
+    }
+
+    public function getKey() {return $this->key;}
+    public function setKey($key){$this->key = $key;}
+
+    public function decryptString($val) {
         $c = base64_decode($val);
         $ivlen = openssl_cipher_iv_length($cipher="aes-256-ctr");
         $iv = substr($c, 0, $ivlen);
         $hmac = substr($c, $ivlen, $sha2len=32);
         $ciphertext_raw = substr($c, $ivlen+$sha2len);
-        $password = openssl_decrypt($ciphertext_raw, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
-        $calcmac = hash_hmac("sha256", $ciphertext_raw, $key, $as_binary=true);
+        $password = openssl_decrypt($ciphertext_raw, $cipher, $this->getKey(), $options=OPENSSL_RAW_DATA, $iv);
+        $calcmac = hash_hmac("sha256", $ciphertext_raw, $this->getKey(), $as_binary=true);
             $validPassword = $password;
+            $query = "CALL sp_insert_error(\'%s\', \'%s\', \'%s\', \'%s\')";
+            $this->wpdb->get_results($this->wpdb->prepare($query, \'Decrypt\', $val , \'decryptString\', session_id()),ARRAY_A);
         return $validPassword;
     }
 
+    public function encryptTxt ($plaintext) {
+        $key = $this->getKey();
+        $ivlen = openssl_cipher_iv_length($cipher="aes-256-ctr");
+        $iv = openssl_random_pseudo_bytes($ivlen);
+        $ciphertext_raw = openssl_encrypt($plaintext, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
+        $hmac = hash_hmac(\'sha256\', $ciphertext_raw, $key, $as_binary=true);
+        $ciphertext = base64_encode( $iv.$hmac.$ciphertext_raw );
+        return $ciphertext;
+    }
 }?>';
-$decrypt = fopen(__DIR__.'\model\commonFunctions\Decrypt.php', "w");
+$decrypt = fopen(__DIR__.'\model\commonFunctions\Encryption.php', "w");
 fwrite($decrypt, $decrypt_data);
 echo "Decrypt created and class added";
 
@@ -338,8 +365,9 @@ $factory_data = '
 include_once get_theme_file_path("model/commonFunctions/LogError.php"); 
 include_once get_theme_file_path("model/commonFunctions/PopUp.php");
 include_once get_theme_file_path("model/commonFunctions/Email.php");
-include_once get_theme_file_path("model/commonFunctions/Decrypt.php"); 
+include_once get_theme_file_path("model/commonFunctions/Encryption.php"); 
 include_once get_theme_file_path("model/commonFunctions/StopWatch.php"); 
+include_once get_theme_file_path("model/commonFunctions/Sanitize.php"); 
 include_once get_theme_file_path("model/HeaderMenu.php"); 
 include_once get_theme_file_path("model/company/Company.php"); 
 
@@ -366,6 +394,14 @@ class Factory {
 
     public static function createCompany(){
         return new Company();
+    }
+
+    public static function createEncryption(){
+        return new Encryption();
+    }
+
+    public static function createSanitize(){
+        return new Sanitize();
     }
 
 }
@@ -815,5 +851,7 @@ class Sanitize {
 ';
 $sanitize = fopen(__DIR__.'\model\commonFunctions\Sanitize.php', "w");
 fwrite($sanitize, $sanitize_data);
+
+
 
 ?>
