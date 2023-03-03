@@ -839,7 +839,7 @@ class Sanitize {
     public function __construct(){}
 
     public static function cleanNumeric($val){
-        self::$val = preg_replace("/[^0-9()]/", '', $val);
+        self::$val = preg_replace("/[^0-9()]/", \'\', $val);
         return self::$val;
     }
 
@@ -858,6 +858,36 @@ class Sanitize {
 $sanitize = fopen(__DIR__.'\model\commonFunctions\Sanitize.php', "w");
 fwrite($sanitize, $sanitize_data);
 
+<?php 
 
+$ajax_data = '
+<?php
+if(session_id() == \'\') {session_start();}
+/*
+Template Name: ajaxCalls
+*/
+?>
+<?php include_once get_theme_file_path(\'model/commonFunctions/Factory.php\'); 
+
+
+header(\'Content-Type: application/json\');
+$headers = apache_request_headers();
+if (isset($headers[\'Csrftoken\'])) {
+    if ($headers[\'Csrftoken\'] !== $_SESSION[\'token\']) { //ensure that the call came from a user that has a session token
+        echo json_encode(array("message"=>"Wrong CSRF token"));
+    } else {
+        if(!empty($_SERVER[\'HTTP_X_REQUESTED_WITH\']) &&  strtolower($_SERVER[\'HTTP_X_REQUESTED_WITH\']) == \'xmlhttprequest\')  //ensure it is an ajax call 
+        {
+            
+        }
+    }
+} else { 
+    echo json_encode(array("message"=>"csrftoken not detected"));
+}
+
+?>
+';
+$ajax = fopen(__DIR__.'\ajax\AjaxCalls.php', "w");
+fwrite($ajax, $ajax_data);
 
 ?>
