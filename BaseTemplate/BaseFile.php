@@ -1,6 +1,11 @@
 <?php
 
 /*create folders*/
+$ajax_dir = __DIR__.'\ajax';
+if (!file_exists($ajax_dir)) {
+    mkdir($ajax_dir, 0777, true);
+}
+
 $view_dir = __DIR__.'\view';
 if (!file_exists($view_dir)) {
     mkdir($view_dir, 0777, true);
