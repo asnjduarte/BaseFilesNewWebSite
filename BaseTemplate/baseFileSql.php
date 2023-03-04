@@ -1,11 +1,44 @@
 <?php
 
-$servername = "localhost:10059";
+
 $username = "root";
 $password = "root";
 $dbname = "local";
 
+//all the values that will need to change
+$servername = "localhost:10047";
 $table_prefix = "wp";
+$countryAbbr = "MX";
+$country = "Mexico";
+$company = "Tiempos de cambio";
+$telTxt = "Télefono";
+$telVal = "479 110 6160";
+$telLnk = "4791106160";
+$emTxt = "Correo";
+$emVal = "info.tcmaranatha@gmail.com";
+$fbLnk = "tiempos.decambio.14";
+$ytLnk = "@tiemposdecambiomaranatha9494";
+$termsTxt = "Términos y condiciones";
+$termsVal = "Politica de privacidad";
+$termsLnk = "politica-de-privacidad";
+$lnk1Txt = "Inicio";
+$lnk1Lnk = "/";
+$lnk1Perms = 2; //general permissions
+$lnk2Txt = "Nuestra Fe";
+$lnk2Lnk = "/nuestra-fe/";
+$lnk2Perms = 2;
+$lnk3Txt = "Acerca de Nosotros";
+$lnk3Lnk = "/acerca-de-nosotros/";
+$lnk3Perms = 2;
+$lnk4Txt = "Agregar reporte de una iglesia";
+$lnk4Lnk = "/agregar-reporte-de-una-iglesia/";
+$lnk4Perms = 1; //admin
+$lnk5Txt = "Ministerios";
+$lnk5Lnk = "/mapa-de-ministerios/";
+$lnk5Perms = 2;
+$lnk6Txt = "Agregar reporte de una tienda";
+$lnk6Lnk = "/agregar-reporte-de-una-tienda/";
+$lnk6Perms = 1;
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -67,7 +100,7 @@ array_push($sqlList, $sql9);
 $sql10 =
 "
 INSERT INTO `". $table_prefix . "_country` (`countryId`, `name`, `isActive`, `abbr`) VALUES
-(1,	'Mexico',	CONV('1', 2, 10) + 0,	'MX');
+(1,	'" . $country ."',	CONV('1', 2, 10) + 0,	'". $countryAbbr ."');
 ";
 array_push($sqlList, $sql10);
 
@@ -87,7 +120,7 @@ array_push($sqlList, $sql5);
 $sql6 =
 "
 INSERT INTO `". $table_prefix . "_company` (`companyId`, `countryId`, `name`) VALUES
-(1,	1,	'Tiempos De Cambio');
+(1,	1,	'".$company."');
 ";
 array_push($sqlList, $sql6);
 
@@ -111,11 +144,11 @@ array_push($sqlList, $sql7);
 $sql8 =
 "
 INSERT INTO `". $table_prefix . "_company_links` (`linkId`, `linkName`, `value`, `img`, `link`, `companyId`, `type`) VALUES
-(1,	'Télefono',	'479 110 6160',	'wh',	'https://api.whatsapp.com/send?phone=4791106160',	1,	1),
-(2,	'Correo',	'info.tcmaranatha@gmail.com',	'em',	'mailto:',	1,	1),
-(3,	'Facebook',	'Facebook',	'fb',	'https://www.facebook.com/tiempos.decambio.14',	1,	2),
-(4,	'YouTube',	'YouTube',	'yt',	'https://www.youtube.com/@tiemposdecambiomaranatha9494',	1,	2),
-(5,	'Términos y condiciones',	'Términos y condiciones',	'tyc',	'/politica-de-privacidad/',	1,	0);
+(1,	'".$telTxt."',	'".$telVal."',	'wh',	'https://api.whatsapp.com/send?phone=".$telLnk."',	1,	1),
+(2,	'".$emTxt."',	'".$emVal."',	'em',	'mailto:',	1,	1),
+(3,	'Facebook',	'Facebook',	'fb',	'https://www.facebook.com/".$fbLnk."',	1,	2),
+(4,	'YouTube',	'YouTube',	'yt',	'https://www.youtube.com/".$ytLnk."',	1,	2),
+(5,	'".$termsTxt."',	'".$termsVal."',	'tyc',	'/".$termsLnk."/',	1,	0);
 ";
 array_push($sqlList, $sql8);
 
@@ -148,13 +181,12 @@ array_push($sqlList, $sql13);
 $sql14 =
 "
 INSERT INTO `". $table_prefix . "_menu_header` (`menuHeaderId`, `link`, `text`, `roleId`) VALUES
-(1,	'/',	'Inicio',	2),
-(2,	'/nuestra-fe/',	'Nuestra Fe',	2),
-(3,	'/acerca-de-nosotros/',	'Acerca de Nosotros',	2),
-(4,	'/agregar-reporte-de-una-iglesia/',	'Agregar reporte de una iglesia',	1),
-(5,	'/mapa-de-ministerios/',	'Ministerios',	2),
-(6,	'/agregar-reporte-de-una-tienda/',	'Agregar reporte de una tienda',	1);
-
+(1,	'".$lnk1Lnk."',	'" . $lnk1Txt ."',	". $lnk1Perms ."),
+(2,	'".$lnk2Lnk."',	'" . $lnk2Txt ."',	". $lnk2Perms ."),
+(3,	'".$lnk3Lnk."',	'" . $lnk3Txt ."',	". $lnk3Perms ."),
+(4,	'".$lnk4Lnk."',	'" . $lnk4Txt ."',	". $lnk4Perms ."),
+(5,	'".$lnk5Lnk."',	'" . $lnk5Txt ."',	". $lnk5Perms ."),
+(6,	'".$lnk6Lnk."',	'" . $lnk6Txt ."',	". $lnk6Perms .")
 ";
 array_push($sqlList, $sql14);
 
