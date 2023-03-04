@@ -1,21 +1,5 @@
 <?php 
 
-$header_func_data = '
-<?php //two column header menu code
-function fetch_tcm(){add_shortcode(\'display_menu\', \'fetch_two_column\');} 
-add_action(\'init\', \'fetch_tcm\');
-function fetch_two_column() {
-    ob_start(); 
-    include_once get_theme_file_path(\'view/twoColumnHeader.php\'); 
-    wp_enqueue_style(\'twoColumnHeader-css\', get_template_directory_uri().\'/css/twoColumnHeader.css\', \'\', microtime());
-    return ob_get_clean();
-}
-?>
-';
-$header_func = fopen(__DIR__.'\functions.php', "a");
-fwrite($header_func, $header_func_data);
-
-
 $header_css_data = '
 /*two column header menu*/
 @keyframes moveInFromTopOpac {
