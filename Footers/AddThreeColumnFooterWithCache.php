@@ -107,7 +107,7 @@ $three_column_footer_controller = fopen(__DIR__.'\controller\FooterWithCachingCo
 fwrite($three_column_footer_controller, $three_column_footer_with_cache_controller_data);
 
 $three_column_footer_with_cache_model_data = '
-//Need to add this to the class
+//Need to add this to the Company.php class
     public function getLinks() {
         return array (
             $this->getLinkName(),
