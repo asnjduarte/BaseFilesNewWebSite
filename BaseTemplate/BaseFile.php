@@ -257,7 +257,7 @@ fwrite($index, $index_data);
 
 $header_data = '
 <html lang="es"	<?php language_attributes(); ?>>
-<?php the_custom_header_markup();  if(session_id() == '') {session_start();}?>
+<?php the_custom_header_markup();  if(session_id() == \'\') {session_start();}?>
 <head>
 	<?php wp_head(); ?>
 	<meta name="csrf-token" content="<?php echo $_SESSION[\'token\']; ?>"/>
