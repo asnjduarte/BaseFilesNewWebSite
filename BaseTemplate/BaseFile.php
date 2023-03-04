@@ -636,11 +636,11 @@ $header_controller_data = '
     $hMenu = $factory->createHeaderMenu();
     $hmList = $hMenu->setHeaderMenuData();
     
-    if (empty($_SESSION['token'])) {
-        if (function_exists('mcrypt_create_iv')) {
-            $_SESSION['token'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
+    if (empty($_SESSION[\'token\'])) {
+        if (function_exists(\'mcrypt_create_iv\')) {
+            $_SESSION[\'token\'] = bin2hex(mcrypt_create_iv(32, MCRYPT_DEV_URANDOM));
         } else {
-            $_SESSION['token'] = bin2hex(openssl_random_pseudo_bytes(32));
+            $_SESSION[\'token\'] = bin2hex(openssl_random_pseudo_bytes(32));
         }
     }
 ?>
@@ -857,8 +857,6 @@ class Sanitize {
 ';
 $sanitize = fopen(__DIR__.'\model\commonFunctions\Sanitize.php', "w");
 fwrite($sanitize, $sanitize_data);
-
-<?php 
 
 $ajax_data = '
 <?php
