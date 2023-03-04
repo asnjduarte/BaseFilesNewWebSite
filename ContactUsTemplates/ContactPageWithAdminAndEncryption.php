@@ -397,6 +397,21 @@ fwrite($contact_form_view, $contact_form_view_data);
 
 $contact_admin_function_data = '
 <?php //admin contact us view
+$page_slug = \'admin-contact-view\'; // Slug of the Post
+$new_page = array(
+    \'post_type\'     => \'page\', 				// Post Type Slug eg: \'page\', \'post\'
+    \'post_title\'    => \'Admin Contact View\',	// Title of the Content
+    \'post_content\'  => \'[display_admin_contact_view]\',	// Content
+    \'post_status\'   => \'publish\',			// Post Status
+    \'post_author\'   => 1,					// Post Author ID
+    \'post_name\'     => $page_slug			// Slug of the Post
+);
+
+if (!get_page_by_path( $page_slug, OBJECT, \'page\')) { // Check If Page Not Exits
+    $new_page_id = wp_insert_post($new_page);
+}
+
+
 function fetch_acv(){add_shortcode(\'display_admin_contact_view\', \'fetch_admin_contact_view\');} 
 add_action(\'init\', \'fetch_acv\');
 function fetch_admin_contact_view() {
@@ -411,6 +426,20 @@ fwrite($contact_admin_function, $contact_admin_function_data);
 
 $contact_function_data = '
 <?php //contact us
+$page_slug = \'contactanos\'; // Slug of the Post
+$new_page = array(
+    \'post_type\'     => \'page\', 				// Post Type Slug eg: \'page\', \'post\'
+    \'post_title\'    => \'Contactanos\',	// Title of the Content
+    \'post_content\'  => \'[display_contact_view]\',	// Content
+    \'post_status\'   => \'publish\',			// Post Status
+    \'post_author\'   => 1,					// Post Author ID
+    \'post_name\'     => $page_slug			// Slug of the Post
+);
+
+if (!get_page_by_path( $page_slug, OBJECT, \'page\')) { // Check If Page Not Exits
+    $new_page_id = wp_insert_post($new_page);
+}
+
 function fetch_cv(){add_shortcode(\'display_contact_view\', \'fetch_contact_view\');} 
 add_action(\'init\', \'fetch_cv\');
 function fetch_contact_view() {
@@ -448,4 +477,18 @@ INSERT INTO `". $table_prefix . "_menu_header` (`link`, `text`, `roleId`) VALUES
 ";
 array_push($sqlList, $sql8);  
 
+$sql9 =
+"
+INSERT INTO `". $table_prefix . "_menu_header` (`link`, `text`, `roleId`) VALUES
+('/contactanos/',	'	Contactanos',	1);
+";
+array_push($sqlList, $sql8);  
+
+foreach ($sqlList as $k => $v) {
+    if ($conn->query($v) === TRUE) {
+        echo "Tables created successfully" . PHP_EOL;
+      } else {
+        echo "Error creating table: " . $conn->error . " " . PHP_EOL;
+      }
+}
 ?>
