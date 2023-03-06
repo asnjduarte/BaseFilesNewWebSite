@@ -935,7 +935,7 @@ fwrite($ajax, $ajax_data);
 
 $default_page_data = '
 <?php get_header();
-	/*Template Name: Member Page*/ ?>
+	/*Template Name: default*/ ?>
 
 			<?php the_content(); ?>
 	<?php 
