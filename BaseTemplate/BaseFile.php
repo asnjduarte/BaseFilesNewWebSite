@@ -247,9 +247,10 @@ fwrite($css, $css_data);
 
 $index_data = '
 <?php 
-get_header();
+get_header();?>
 
-get_footer();
+<div class="h700"></div>
+<?php get_footer();
 
 ?>
 ';
