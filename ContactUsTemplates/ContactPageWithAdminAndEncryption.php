@@ -24,30 +24,6 @@ if(isset( $_POST["submitted"] )) {
 $ajax = fopen(__DIR__.'\ajax\AjaxCalls.php', "a");
 fwrite($ajax, $ajax_data);
 
-$ajax_data = '
-//add section inside of !empty($_SERVER...) 
-//contact us information has been submitted
-if(isset( $_POST["submitted"] )) {
-    $factory = new Factory();
-
-    //insert data into db
-    $contact = $factory->createContact();
-    $contact->setContact($_POST["firstName"], $_POST["lastName"], $_POST["email"], $_POST["phone"], $_POST["comment"], $_POST["user_registration_privacy_check"], false);
-    $contact->insertContact();
-
-    //send email
-    $email = $factory->createEmail();
-    $body = "Thank you " . $_POST["firstName"] . " for contacting us! We may contact you via your email at " . $_POST["email"] . " or via your phone number at " . $_POST["phone"] . 
-    "We will answer your question: " . $_POST["comment"] . ", shortly!";
-    $email->setEmail($_POST["email"], "Gracias de contactarnos!", $body);
-    $email->sendEmail();
-
-    echo json_encode(array("message"=>"Thank you for contacting us " . $_POST["firstName"] . "! We will contact you shortly.")); 
-}
-';
-$ajax = fopen(__DIR__.'\ajax\AjaxCalls.php', "a");
-fwrite($ajax, $ajax_data);
-
 $css_data = '
 .t30 {top:30px;}
 .l5 {left:5px;}
@@ -269,7 +245,7 @@ class Contact {
 }
 ?>
 ';
-$contact = fopen(__DIR__.'\user\Contact.php', "w");
+$contact = fopen(__DIR__.'\model\user\Contact.php', "w");
 fwrite($contact, $contact_data);
 
 $view_data = '
