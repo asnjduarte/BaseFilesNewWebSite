@@ -1,12 +1,12 @@
 <?php
 
-$servername = "localhost:10059";
+$servername = "localhost:10047";
 $username = "root";
 $password = "root";
 $dbname = "local";
 
 $table_prefix = "wp";
-$companyName = "Tiempos de cambio";
+$companyName = "Nathans Company";
 
 $ajax_data = '
 //add section inside of !empty($_SERVER...) 
@@ -462,16 +462,16 @@ $sqlList = array ();
 $sql8 =
 "
 INSERT INTO `". $table_prefix . "_menu_header` (`link`, `text`, `roleId`) VALUES
-('/admin-contact-view/',	'	Admin Contact View',	1);
+('/admin-contact-view/',	'Admin Contact View',	1);
 ";
 array_push($sqlList, $sql8);  
 
 $sql9 =
 "
 INSERT INTO `". $table_prefix . "_menu_header` (`link`, `text`, `roleId`) VALUES
-('/contactanos/',	'	Contactanos',	1);
+('/contactanos/',	'Contactanos',	2);
 ";
-array_push($sqlList, $sql8);  
+array_push($sqlList, $sql9);  
 
 foreach ($sqlList as $k => $v) {
     if ($conn->query($v) === TRUE) {
