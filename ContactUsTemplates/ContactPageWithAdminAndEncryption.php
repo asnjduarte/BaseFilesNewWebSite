@@ -446,7 +446,7 @@ public static function createContact(){
     return new Contact();
 }
 ';
-$contact_factory = fopen(__DIR__.'\factorys.php', "a");
+$contact_factory = fopen(__DIR__.'\model\commonFunctions\Factory.php', "a");
 fwrite($contact_factory, $contact_factory_data);
 
 
