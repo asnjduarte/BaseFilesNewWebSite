@@ -397,7 +397,7 @@ function fetch_admin_contact_view() {
 }
 ?>
 ';
-$contact_admin_function = fopen(__DIR__.'\view\contact.php', "w");
+$contact_admin_function = fopen(__DIR__.'\functions.php', "a");
 fwrite($contact_admin_function, $contact_admin_function_data);
 
 $contact_function_data = '
@@ -428,6 +428,18 @@ function fetch_contact_view() {
 ';
 $contact_function = fopen(__DIR__.'\functions.php', "a");
 fwrite($contact_function, $contact_function_data);
+
+$contact_factory_data = '
+/*add section to the top of the Factory.php*/
+include_once get_theme_file_path("model/user/Contact.php"); 
+
+/*add section into the Factory class*/
+public static function createContact(){
+    return new Contact();
+}
+';
+$contact_factory = fopen(__DIR__.'\factorys.php', "a");
+fwrite($contact_factory, $contact_factory_data);
 
 $servername = "localhost:10059";
 $username = "root";
