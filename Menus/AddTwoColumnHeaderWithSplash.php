@@ -28,6 +28,7 @@ $header_css = fopen(__DIR__.'\css\TwoColumnHeader.css', "w");
 fwrite($header_css, $header_css_data);
 
 $header_data = '
+
 <?php include_once get_theme_file_path(\'controller/HeaderMenuController.php\');  ?>
 <div class="w100 flx abs z3 mv-rgt0">
     <div id="nav-menu" class="w50 mbDNo">
@@ -43,10 +44,11 @@ $header_data = '
                     <li><a href="<?php echo site_url(\'/?page_id=#\')?>"><?php echo esc_html( $current_user->user_login ) ?></a>
                     <ul>
                         <?php $user = wp_get_current_user();$allowed_roles = array(\'editor\', \'administrator\');
+                            foreach ($hmList as $k=> $v) {
                                 if( array_intersect($allowed_roles, $user->roles ) ) { 
                                     if ($v->getRoleId() == 1) {?>
                                 <li><a href="<?php echo $v->getLink()?>" aria-label="Va a la página de <?php echo $v->getText()?>"><?php echo $v->getText()?></a></li>
-                                <?php }}; ?>
+                                <?php }}}; ?>
                         <li><a href="<?php echo wp_logout_url(); ?>" aria-label="logout">Logout</a></li>
                     </ul>
                     </li>
