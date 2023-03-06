@@ -130,51 +130,6 @@ $header_css_data = '
 $header_css = fopen(__DIR__.'\css\TwoColumnHeader.css', "w");
 fwrite($header_css, $header_css_data);
 
-$header_data = '
-<?php include_once get_theme_file_path(\'controller/HeaderMenuController.php\');  ?>
-<div class="w100 flx abs z3 mv-rgt0">
-    <div id="nav-menu" class="w50 mbDNo">
-        <nav class="main-navigation lf1 ">
-            <ul class="flx jcc">
-                <?php foreach ($hmList as $k => $v) {
-                    if ($v->getRoleId() == 2){
-                        if ((0==$k%2)) {?>
-                        <li><a href="<?php echo $v->getLink();?>" aria-label="Va a la página de <?php echo $v->getText()?>"><?php echo $v->getText()?></a></li>
-                    <?}}}?>
-                <?php if ( is_user_logged_in() ) { 
-                    $current_user = wp_get_current_user(); ?> 
-                    <li><a href="<?php echo site_url(\'/?page_id=#\')?>"><?php echo esc_html( $current_user->user_login ) ?></a>
-                    <ul>
-                        <?php $user = wp_get_current_user();$allowed_roles = array(\'editor\', \'administrator\');
-                                if( array_intersect($allowed_roles, $user->roles ) ) { 
-                                    if ($v->getRoleId() == 1) {?>
-                                <li><a href="<?php echo $v->getLink()?>" aria-label="Va a la página de <?php echo $v->getText()?>"><?php echo $v->getText()?></a></li>
-                                <?php }}; ?>
-                        <li><a href="<?php echo wp_logout_url(); ?>" aria-label="logout">Logout</a></li>
-                    </ul>
-                    </li>
-                <?php } else { ?>
-                    <li><a href="<?php echo site_url(\'/loginregister\') ?>">Inicio</a></li>
-                <?php } ?>
-            </ul>
-        </nav>
-    </div>
-    <div class="w50">
-    <nav class="main-navigation lf1 txtColor mbDNo">
-        <ul class="flx jcc">
-        <?php foreach ($hmList as $k => $v) {
-                    if ($v->getRoleId() == 2){
-                        if (($k%2==1)) {?>
-                        <li><a href="<?php echo $v->getLink();?>" aria-label="Va a la página de <?php echo $v->getText()?>"><?php echo $v->getText()?></a></li>
-                    <?}}}?>    
-        </ul>
-        </nav>
-    </div>
-</div>
-';
-$header = fopen(__DIR__.'\view\TwoColumnHeader.php', "w");
-fwrite($header, $header_data);
-
 $splash_js_data = '
 
 /*add this to the document ready section of footerbundle.js*/
