@@ -430,6 +430,7 @@ function fetch_contact_view() {
     ob_start(); 
     include_once get_theme_file_path(\'view/twoColumnContactView.php\'); 
     wp_enqueue_style(\'contact-css\', get_template_directory_uri().\'/css/contact.css\', \'\', microtime());
+    wp_enqueue_script(\'contact-js\', get_template_directory_uri().\'/js/contact.js\', NULL, microtime(), true);
     return ob_get_clean();
 }
 ?>
@@ -459,6 +460,46 @@ if ($conn->connect_error) {
 
 // sql to create table
 $sqlList = array ();
+$sql2 =
+"
+CREATE TABLE `".$table_prefix."_contact_us`(
+    `contactUsId` int(11) NOT NULL AUTO_INCREMENT,
+    `firstName` text NOT NULL,
+    `lastName` text NOT NULL,
+    `email` text NOT NULL,
+    `phone` text NOT NULL,
+    `createDate` datetime NOT NULL,
+    `comment` text NOT NULL,
+    `isPrivacyAgreed` bit(1) NOT NULL,
+    `wasUserContacted` bit(1) NOT NULL,
+    `eKey` blob NOT NULL,
+    PRIMARY KEY (`contactUsId`)
+  ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+";
+array_push($sqlList, $sql2);  
+
+$sql3 =
+"
+CREATE PROCEDURE `sp_insert_contact_info`(IN `f_n` text, IN `l_n` text, IN `e` text, IN `p` text, IN `c` text, IN `ipa` bit, IN `wuc` bit, IN `k` text)
+BEGIN
+insert into".$table_prefix."_contact_us(firstName, lastName, email, phone, createDate, comment, isPrivacyAgreed, wasUserContacted, eKey) 
+values (f_n, l_n, e, p, CURRENT_TIMESTAMP(), c, ipa, wuc, k);
+END
+";
+array_push($sqlList, $sql3);  
+
+$sql4 =
+"
+CREATE PROCEDURE `sp_fetch_contact_us_info`()
+BEGIN
+SELECT cui.contactUsId, cui.firstName, cui.lastName, cui.email, cui.phone, cui.wasUserContacted, cui.comment, cui.eKey
+FROM ". $table_prefix . "_contact_us cui 
+WHERE cui.wasUserContacted = 0 
+LIMIT 10;
+END
+";
+array_push($sqlList, $sql4);  
+
 $sql8 =
 "
 INSERT INTO `". $table_prefix . "_menu_header` (`link`, `text`, `roleId`) VALUES
