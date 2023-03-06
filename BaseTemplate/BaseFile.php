@@ -933,4 +933,18 @@ if (isset($headers[\'Csrftoken\'])) {
 $ajax = fopen(__DIR__.'\ajax\AjaxCalls.php', "w");
 fwrite($ajax, $ajax_data);
 
+$default_page_data = '
+<?php get_header();
+	/*Template Name: Member Page*/ ?>
+
+			<?php the_content(); ?>
+	<?php 
+get_footer();
+?>
+';
+$default_page = fopen(__DIR__.'\page.php', "w");
+fwrite($default_page, $default_page_data);
+
+
+
 ?>
