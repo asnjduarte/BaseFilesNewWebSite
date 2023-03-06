@@ -1,5 +1,13 @@
 <?php
 
+$servername = "localhost:10059";
+$username = "root";
+$password = "root";
+$dbname = "local";
+
+$table_prefix = "wp";
+$companyName = "Tiempos de cambio";
+
 $ajax_data = '
 //add section inside of !empty($_SERVER...) 
 //contact us information has been submitted
@@ -441,13 +449,6 @@ public static function createContact(){
 $contact_factory = fopen(__DIR__.'\factorys.php', "a");
 fwrite($contact_factory, $contact_factory_data);
 
-$servername = "localhost:10059";
-$username = "root";
-$password = "root";
-$dbname = "local";
-
-$table_prefix = "wp";
-$companyName = "Tiempos de cambio";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
