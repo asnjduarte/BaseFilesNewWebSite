@@ -22,10 +22,10 @@ $new_page = array(
     \'post_content\'  => \'[display_basic_privacy_policy_view]\',	// Content
     \'post_status\'   => \'publish\',			// Post Status
     \'post_author\'   => 1,					// Post Author ID
-    \'post_name\'     => '.$page_slug.'			// Slug of the Post
+    \'post_name\'     => $page_slug			// Slug of the Post
 );
 
-if (!get_page_by_path( '.$page_slug.', OBJECT, \'page\')) { // Check If Page Not Exits
+if (!get_page_by_path( $page_slug, OBJECT, \'page\')) { // Check If Page Not Exits
     $new_page_id = wp_insert_post($new_page);
 }
 
