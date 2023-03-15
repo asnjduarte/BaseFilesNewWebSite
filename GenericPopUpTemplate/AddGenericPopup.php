@@ -148,6 +148,7 @@ class GenericPopUp{
         try {
             foreach ($result as $k => $v) {
                 $gpu = new GenericPopUp();
+                $gpu->setBoxId($v["boxId"]);
                 $gpu->setBtn1($v["btn1"]);
                 $gpu->setBtn2($v["btn2"]);
                 $gpu->setTxt($v["txt"]);
@@ -218,6 +219,18 @@ setTimeout(function(){
     $(\'.smGenericPopUp\').removeClass("dNo");
     $(\'.smGenericPopUp\').addClass("jqWidenFrmLft");
 }, 2000);
+
+//close big popup  
+$(".bgGenericPopUp .gvpBtnCancel").on("click", function(e) {
+    $("#" + $(this).attr("parent_id")).removeClass("jqWidenFrmLft");
+    $("#" + $(this).attr("parent_id")).addClass("jqShortenFrmRght");
+});
+
+//close small popup
+$(".smGenericPopUp .gvpBtnCancel").on("click", function(e) {
+    $("#" + $(this).attr("parent_id")).removeClass("jqWidenFrmLft");
+    $("#" + $(this).attr("parent_id")).addClass("jqShortenFrmRght");
+});
 /*end generic popup*/
 ';
 $generic_js = fopen(__DIR__.'\js\footerBundle.js', "a");
