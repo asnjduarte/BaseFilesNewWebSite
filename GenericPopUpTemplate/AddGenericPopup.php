@@ -1,8 +1,8 @@
 <?php
 
 $small_view_data = '
-<div id="<?php echo $v->getBoxId() ?>" class="z200 fxd jqShortenFrmRght dNo  <?php if($v->getIsHide() == "1") echo \'dNo_\'; echo $v->getClass();?> ">
-    <div class="bx100 flx fxd jcse aic z200 tc">
+<div id="<?php echo $v->getBoxId() ?>" class="z99 fxd jqShortenFrmRght dNo  <?php if($v->getIsHide() == "1") echo \'dNo_\'; echo $v->getClass();?> ">
+    <div class="bx100 flx fxd jcse aic z99 tc">
         <div class="gBoxShadow w95 h80 p20 rel dis flx aic jcse lp1 iph_ha mbh_w80 mbl_w95 ">
             <a href="#" parent_id="<?php echo $v->getBoxId() ?>" class="gvpBtnCancel wh2 abs ptr r1v"><div class="clsBtn tran300 bx100 cnnr"></div></a>
             <div class="w30 iph_ha">
@@ -20,9 +20,8 @@ $small_view = fopen(__DIR__.'\view\SmallGenericPopUpView.php', "w");
 fwrite($small_view, $small_view_data);
 
 $big_view_data = '
-<div id="<?php echo $v->getBoxId() ?>" class="z200 fxd jqShortenFrmRght dNo  <?php if($v->getIsHide() == "1") echo \'dNo_\'; echo $v->getClass();?> ">
-    <div class="bx100 spinnerBg"></div>
-    <div class="w100 h90 flx fxd jcse aic z200 tc">
+<div id="<?php echo $v->getBoxId() ?>" class="z99 fxd jqShortenFrmRght dNo  <?php if($v->getIsHide() == "1") echo \'dNo_\'; echo $v->getClass();?> ">
+    <div class="w100 h90 flx fxd jcse aic z99 tc">
         <div class="gBoxShadow h80 p20 mbl_w95 rel lp1 iph_ha mbh_w80 dis">
             <a href="#" parent_id="<?php echo $v->getBoxId() ?>" class="gvpBtnCancel wh2 abs ptr r1v"><div class="clsBtn tran300 bx100 cnnr"></div></a>
             <div class="h80 iph_ha">
@@ -197,18 +196,6 @@ $generic_controller_data = '
 $generic_controller = fopen(__DIR__.'\controller\GenericPopUpController.php', "w");
 fwrite($generic_controller, $generic_controller_data);
 
-$generic_factory_data = '
-/*Add section to includes in the Factory class*/
-include_once get_theme_file_path("model/company/GenericPopUp.php"); 
-
-/*Add section to the Factory class*/
-public static function createGenericPopUp(){
-    return new GenericPopUp();
-}
-';
-$generic_factory = fopen(__DIR__.'\model\commonFunctions\Factory.php', "a");
-fwrite($generic_factory, $generic_factory_data);
-
 $generic_js_data = '
 /*start generic popup*/
 setTimeout(function(){
@@ -235,5 +222,75 @@ $(".smGenericPopUp .gvpBtnCancel").on("click", function(e) {
 ';
 $generic_js = fopen(__DIR__.'\js\footerBundle.js', "a");
 fwrite($generic_js, $generic_js_data);
+
+$generic_factory_data = '
+/*Add section to includes in the Factory class*/
+include_once get_theme_file_path("model/company/GenericPopUp.php"); 
+
+/*Add section to the Factory class*/
+public static function createGenericPopUp(){
+    return new GenericPopUp();
+}
+';
+$generic_factory = fopen(__DIR__.'\model\commonFunctions\Factory.php', "a");
+fwrite($generic_factory, $generic_factory_data);
+
+
+$generic_css_data = '
+.bgGenericPopUp {height:100%;top:0px;}
+.smGenericPopUp {height:85px;bottom:0px; width:100%;}
+.smGenericPopUp .dis {display:flex;}
+.clsBtn {background-image:url(\'/wp-content/uploads/2023/images/social/gvpCloseWht.png\');}
+.clsBtn:hover {background-image:url(\'/wp-content/uploads/2023/images/social/gvpCloseGrn.png\');}
+.spinnerBg {background-color: #00000000;z-index: 100;position: fixed;}
+.br50 {border-radius: 50px;}
+.z99 {z-index: 99;}
+.w45 {width:45%;}
+.w95 {width:95%;}
+.h80 {height: 80%;}
+.h90 {height: 90%;}
+.tc {text-align:center;}
+.jcse {justify-content: space-evenly;}
+.t0 {top:0px;}
+.fxd {position:fixed;}
+.ptr {cursor: pointer;}
+.cwh {color: #fff;}
+.wh2 {width: 2vw;height: 2vw;}
+.r1v {right: 1vw;}
+.mtb1 {margin-top: 1vw;margin-bottom: 1vw;}
+.jqShortenFrmRght {animation: shortenFromRght .5s forwards;}
+@keyframes shortenFromRght {
+    0% {visibility: visible;opacity: 1;width: 100%;transform: translateX(0px);-webkit-transform: translateX(0px)}
+    100% {visibility: hidden;opacity: 0;width: 0;transform: translateX(-15px);-webkit-transform: translateX(15px)}
+}
+.jqWidenFrmLft {animation: widenFromLft .5s forwards!important;}
+@keyframes widenFromLft {
+    0% {visibility: hidden;opacity: 0;width: 0;transform: translateX(-15px);-webkit-transform: translateX(-15px)}
+    100% {visibility: visible;opacity: 1;width: 100%;transform: translateX(0px);-webkit-transform: translateX(0px)}
+}
+';
+$generic_css = fopen(__DIR__.'\css\genericPopUp.css', "w");
+fwrite($generic_css, $generic_css_data);
+
+$generic_functions_data = '
+/*add this to the my_scripts in the functions.php*/
+if( is_page( array(5)) || is_front_page() ){  
+    wp_enqueue_style(\'generic-css\', get_template_directory_uri().\'/css/genericPopUp.css\', \'\', microtime());
+} 
+';
+$generic_functions = fopen(__DIR__.'\functions.php', "a");
+fwrite($generic_functions, $generic_functions_data);
+
+$generic_index_data = '
+<?php
+$cookie = \'FirstVisitShowInitialPopup\';
+if(!isset($_COOKIE[$cookie])) {
+    include_once get_theme_file_path(\'controller/GenericPopUpController.php\'); 
+    include_once get_theme_file_path(\'view/GenericPopUpView.php\');
+}
+?>
+';
+$generic_index = fopen(__DIR__.'\index.php', "a");
+fwrite($generic_index, $generic_index_data);
 
 ?>
