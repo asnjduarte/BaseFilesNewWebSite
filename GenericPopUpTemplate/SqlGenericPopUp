@@ -1,0 +1,103 @@
+<?php
+
+//these values may need to change
+$servername = "localhost:10047";
+$table_prefix = "wp";
+$username = "root";
+$password = "root";
+$dbname = "local";
+$gpu1BoxId = "gvpMP1";
+$gpu1Btn = 'Sign Up';
+$gpu1Lnk = "https://mailchi.mp/6b8dca26bd10/maranatha";
+$gpu1H2 = "";
+$gpu1H1 = "Wait!";
+$gpu1Class = "bgGenericPopUp";
+$gpu1Txt = "Interested in the Maranatha Marketing newsletter?";
+$gpu1Start = "2023-03-14 13:52:24";
+$gpu1End = "2023-03-14 13:52:24";
+$gpu1Hide = 0;
+$gpu1IsInfinite = 1;
+
+$gpu2BoxId = "gvpMP2";
+$gpu2Btn = 'Read Privacy Policy';
+$gpu2Lnk = "/politica-de-privacidad/";
+$gpu2H2 = "Privacy Policy";
+$gpu2H1 = "";
+$gpu2Class = "smGenericPopUp";
+$gpu2Txt = "By using this website, you agree to our use of cookies to analyze website traffic and enhance your experience on our website";
+$gpu2Start = "2023-03-14 13:52:24";
+$gpu2End = "2023-03-14 13:52:24";
+$gpu2Hide = 0;
+$gpu2IsInfinite = 1;
+
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $dbname);
+// Check connection
+if ($conn->connect_error) {
+  die("Connection failed: " . $conn->connect_error);
+}
+
+// sql to create table
+$sqlList = array ();
+$sql = "
+CREATE TABLE `" . $table_prefix . "_generic_popup` (
+  `popupId` int(11) NOT NULL AUTO_INCREMENT,
+  `boxId` varchar(15) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `btn1` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `btn2` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `txt` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `img` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `urlBtn` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `h2` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `h1` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `class` varchar(14) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `startDayTime` datetime NOT NULL,
+  `endDayTime` datetime NOT NULL,
+  `waitTime` int(11) NOT NULL,
+  `isHide` tinyint(1) NOT NULL,
+  `isInfinite` tinyint(1) NOT NULL,
+  PRIMARY KEY (`popupId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+";
+array_push($sqlList, $sql);
+
+$sql1 = "
+INSERT INTO `" . $table_prefix . "_generic_popup` (`popupId`, `boxId`, `btn1`, `btn2`, `txt`, `img`, `urlBtn`, `h2`, `h1`, `class`, `startDayTime`, `endDayTime`, `waitTime`, `isHide`, `isInfinite`) VALUES
+(1,	'".$gpu1BoxId."',	'".$gpu1Btn."',	'',	'".$gpu1Txt."',	'/wp-content/uploads/2023/images/social/newsletter.jpg',	'".$gpu1Lnk."',	'',	'".$gpu1H1."',	'".$gpu1Class."',	'".$gpu1Start."',	'".$gpu1End."',	1,	".$gpu1Hide.",	".$gpu1IsInfinite."),
+(2,	'".$gpu2BoxId."',	'".$gpu2Btn."',	'',	'".$gpu2Txt."',	'/wp-content/uploads/2023/images/social/newsletter.jpg',	'".$gpu2Lnk."',	'',	'".$gpu2H1."',	'".$gpu2Class."',	'".$gpu2Start."',	'".$gpu2End."',	1,	".$gpu2Hide.",	".$gpu2IsInfinite.");
+";
+array_push($sqlList, $sql1);
+
+$sql2 = "
+CREATE PROCEDURE `sp_fetch_specific_generic_popup`(IN `b_id` varchar(15) CHARACTER SET 'utf8mb4')
+BEGIN
+SELECT popupId, boxId, btn1, btn2, txt, img, urlBtn, h2, h1, class, startDayTime, endDayTime, waitTime, isHide, isInfinite 
+FROM " . $table_prefix . "_generic_popup
+WHERE boxId = b_id AND ((startDayTime >= CURDATE() AND endDayTime <= CURDATE()) OR (isInfinite = 1));
+END;;
+";
+array_push($sqlList, $sql2);
+
+$sql3 = "
+CREATE PROCEDURE `sp_fetch_generic_popup`(IN `val` tinyint)
+BEGIN
+SELECT popupId, boxId, btn1, btn2, txt, img, urlBtn, h2, h1, class, startDayTime, endDayTime, waitTime, isHide, isInfinite 
+FROM " . $table_prefix . "_generic_popup
+WHERE ((startDayTime >= CURDATE() AND endDayTime <= CURDATE()) OR (isInfinite = 1));
+END;;
+";
+array_push($sqlList, $sql3);
+
+
+foreach ($sqlList as $k => $v) {
+  if ($conn->query($v) === TRUE) {
+      echo "Tables created successfully" . PHP_EOL;
+    } else {
+      echo "Error creating  " . $v ." " . $conn->error . " " . PHP_EOL;
+    }
+}
+
+?>
+
+
