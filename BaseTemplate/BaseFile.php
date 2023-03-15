@@ -160,23 +160,32 @@ ul {padding: 0px;}
 .h300 {height:300px;}
 .h700 {height:700px;}
 .h800 {height:800px;}
+.h80 {height: 80%;}
+.h90 {height: 90%;}
 .w30 {width:30%;}
+.w45 {width:45%;}
 .w50 {width: 50%;}
 .w60 {width:60%;}
 .w80 {width: 80%;}
+.w95 {width:95%;}
 input[type="text"], .w100 {width: 100%;}
 .h100 {height:100%;}
 .bx100 {height:100%; width:100%;}
+.tc {text-align:center;}
+.fxd {position:fixed;}
 .flx {display: flex;}
 .flx1 {flex:1;}
 .fwrap {flex-wrap: wrap;}
 .flxdc {flex-direction: column;}
 .jcc {justify-content: center;}
+.jcse {justify-content: space-evenly;}
 .aic {align-items: center;}
 .rel {position:relative;}
 .abs {position: absolute;}
+.t0 {top:0px;}
 .z1{z-index: 1;}
 .z3 {z-index: 3;}
+.z99 {z-index: 99;}
 .baf {background-attachment: fixed;}
 li {list-style: none;padding: 5px;}
 .dNoP {display: none!important;}
@@ -190,6 +199,7 @@ li {list-style: none;padding: 5px;}
 .pt3 {padding-top:3vw;}
 .o1 {opacity:.1;}
 .ofya {overflow-y: auto;}
+.ptr {cursor: pointer;}
 .mv-rgt0 {visibility: hidden;}
 .pLoad .mv-rgt0 {animation:moveInFromTopOpac 1s forwards;}
 .cnnr {background-size:contain; background-repeat: no-repeat;}
