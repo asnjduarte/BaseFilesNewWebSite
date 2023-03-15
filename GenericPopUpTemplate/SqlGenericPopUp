@@ -64,8 +64,8 @@ array_push($sqlList, $sql);
 
 $sql1 = "
 INSERT INTO `" . $table_prefix . "_generic_popup` (`popupId`, `boxId`, `btn1`, `btn2`, `txt`, `img`, `urlBtn`, `h2`, `h1`, `class`, `startDayTime`, `endDayTime`, `waitTime`, `isHide`, `isInfinite`) VALUES
-(1,	'".$gpu1BoxId."',	'".$gpu1Btn."',	'',	'".$gpu1Txt."',	'/wp-content/uploads/2023/images/social/newsletter.jpg',	'".$gpu1Lnk."',	'',	'".$gpu1H1."',	'".$gpu1Class."',	'".$gpu1Start."',	'".$gpu1End."',	1,	".$gpu1Hide.",	".$gpu1IsInfinite."),
-(2,	'".$gpu2BoxId."',	'".$gpu2Btn."',	'',	'".$gpu2Txt."',	'/wp-content/uploads/2023/images/social/newsletter.jpg',	'".$gpu2Lnk."',	'',	'".$gpu2H1."',	'".$gpu2Class."',	'".$gpu2Start."',	'".$gpu2End."',	1,	".$gpu2Hide.",	".$gpu2IsInfinite.");
+(1,	'".$gpu1BoxId."',	'".$gpu1Btn."',	'',	'".$gpu1Txt."',	'/wp-content/uploads/2023/images/social/newsletter.jpg',	'".$gpu1Lnk."',	'".$gpu1H2."',	'".$gpu1H1."',	'".$gpu1Class."',	'".$gpu1Start."',	'".$gpu1End."',	1,	".$gpu1Hide.",	".$gpu1IsInfinite."),
+(2,	'".$gpu2BoxId."',	'".$gpu2Btn."',	'',	'".$gpu2Txt."',	'/wp-content/uploads/2023/images/social/newsletter.jpg',	'".$gpu2Lnk."',	'".$gpu2H2."',	'".$gpu2H1."',	'".$gpu2Class."',	'".$gpu2Start."',	'".$gpu2End."',	1,	".$gpu2Hide.",	".$gpu2IsInfinite.");
 ";
 array_push($sqlList, $sql1);
 
