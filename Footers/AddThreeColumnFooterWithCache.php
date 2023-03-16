@@ -1,7 +1,9 @@
 <?php
 
-$three_column_footer_with_cache_data = '
+$secondColumn = "Explore";
+$thirdColumn = "Contact Us";
 
+$three_column_footer_with_cache_data = '
 <?php include get_theme_file_path(\'controller/FooterWithCachingController.php\');  ?>
 <footer class="site-footer">
     <div class="site-footer__inner">
@@ -18,7 +20,7 @@ $three_column_footer_with_cache_data = '
                 <? }} ?>
             </div>
             <div class="flx1">
-                <h3>Explorar</h3>
+                <h3>'.$secondColumn.'</h3>
                 <nav>
                     <ul>
                         <?php  foreach ($cacheCompanyInfo->get()["Links"] as $k => $v) { 
@@ -29,7 +31,7 @@ $three_column_footer_with_cache_data = '
                 </nav>
             </div>
             <div class="flx1">
-                <h3>Conectar con nosotros</h3>
+                <h3>'.$thirdColumn.'</h3>
                 <nav>
                     <ul class="social-icons-list group">
                         <?php foreach ($cacheCompanyInfo->get()["Links"] as $k => $v) { 
