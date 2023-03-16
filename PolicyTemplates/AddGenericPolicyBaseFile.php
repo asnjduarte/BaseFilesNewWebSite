@@ -1,5 +1,4 @@
 <?php
-
 $policy_model_data = '
 <?php 
 class Policy {
@@ -38,8 +37,11 @@ class Policy {
         try { 
             $query = "CALL 	sp_fetch_policy_terms(\'%d\');";
             $result = $this->wpdb->get_results($this->wpdb->prepare($query, $this->getPolicyId()), ARRAY_A);
+            if($this->wpdb->last_error !== \'\') {
+                $this->err->addError("Policy.php", $this->wpdb->last_error, "sp_fetch_policy_terms", $this->wpdb);   
+            }
         } catch (Exception $e) {
-            $this->err->addError("Company.php", $e, "getCompanyInfoDb() - sp_fetch_company_info", $this->wpdb);
+            $this->err->addError("Policy.php", $e, "getPolicyTermInfoFromDb", $this->wpdb);
         }
         return $result;
     }
@@ -48,8 +50,11 @@ class Policy {
         try { 
             $query = "CALL 	sp_fetch_policy(\'%d\');";
             $result = $this->wpdb->get_results($this->wpdb->prepare($query, $this->getPolicyId()), ARRAY_A);
+            if($this->wpdb->last_error !== \'\') {
+                $this->err->addError("Policy.php", $this->wpdb->last_error, "sp_fetch_policy", $this->wpdb);   
+            }
         } catch (Exception $e) {
-            $this->err->addError("Company.php", $e, "getCompanyInfoDb() - sp_fetch_company_info", $this->wpdb);
+            $this->err->addError("Policy.php", $e, "getPolicyInfoDb", $this->wpdb);
         } 
         return $result;
     }
@@ -60,13 +65,18 @@ class Policy {
         $this->setPolicyDescription($policy[0]["policyDescription"]);
 
         $termsList = array();
-        $policy_terms = $this->getPolicyTermInfoFromDb();
-        foreach($policy_terms as $k => $v){
-            $policy = new Policy();
-            $policy->setPolicyTermName($v["policyTermName"]);
-            $policy->setPolicyTermDescription($v["policyTermDescription"]);
-            array_push($termsList, $policy);
+        try {
+            $policy_terms = $this->getPolicyTermInfoFromDb();
+            foreach($policy_terms as $k => $v){
+                $policy = new Policy();
+                $policy->setPolicyTermName($v["name"]);
+                $policy->setPolicyTermDescription($v["description"]);
+                array_push($termsList, $policy);
+            }
+        } catch (Exception $e) {
+            $this->err->addError("Policy.php", $e, "setPolicyInfo", $this->wpdb);
         }
+        
         return $termsList;
     }
     
