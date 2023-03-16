@@ -6,7 +6,9 @@ $password = "root";
 $dbname = "local";
 
 $table_prefix = "wp";
-$companyName = "Nathans Company";
+$companyName = "ND Test";
+$contactUsPageTxt = "Contact Us";
+$contactUsPageLnk = "contact-us";
 
 $ajax_data = '
 //add section inside of !empty($_SERVER...) 
@@ -410,10 +412,10 @@ fwrite($contact_admin_function, $contact_admin_function_data);
 
 $contact_function_data = '
 <?php //contact us
-$page_slug = \'contactanos\'; // Slug of the Post
+$page_slug = \''.$contactUsPageLnk.'\'; // Slug of the Post
 $new_page = array(
     \'post_type\'     => \'page\', 				// Post Type Slug eg: \'page\', \'post\'
-    \'post_title\'    => \'Contactanos\',	// Title of the Content
+    \'post_title\'    => \''.$contactUsPageTxt.'\',	// Title of the Content
     \'post_content\'  => \'[display_contact_view]\',	// Content
     \'post_status\'   => \'publish\',			// Post Status
     \'post_author\'   => 1,					// Post Author ID
@@ -510,7 +512,7 @@ array_push($sqlList, $sql8);
 $sql9 =
 "
 INSERT INTO `". $table_prefix . "_menu_header` (`link`, `text`, `roleId`) VALUES
-('/contactanos/',	'Contactanos',	2);
+('/".$contactUsPageLnk."/',	'".$contactUsPageTxt."',	2);
 ";
 array_push($sqlList, $sql9);  
 
