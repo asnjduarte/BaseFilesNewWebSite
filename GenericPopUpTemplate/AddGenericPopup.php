@@ -277,6 +277,19 @@ $generic_functions_data = '
 if( is_page( array(5)) || is_front_page() ){  
     wp_enqueue_style(\'generic-css\', get_template_directory_uri().\'/css/genericPopUp.css\', \'\', microtime());
 } 
+
+<?php
+//set cookie used for first visit to show initial popups 
+function set_cookie() { 
+    $cookie = \'FirstVisitShowInitialPopup\';
+    $visit_time = date(\'F j, Y  g:i a\');
+    if(!isset($_COOKIE[$cookie])) {
+        // set a cookie for 1 year
+        setcookie($cookie, $visit_time, time()+7981200);
+    }
+}
+add_action( \'init\', \'set_cookie\' );
+?>
 ';
 $generic_functions = fopen(__DIR__.'\functions.php', "a");
 fwrite($generic_functions, $generic_functions_data);
