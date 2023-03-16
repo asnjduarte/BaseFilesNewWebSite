@@ -16,6 +16,18 @@ if ($conn->connect_error) {
 
 // sql to create table
 $sqlList = array ();
+$sql3 =
+"
+CREATE PROCEDURE `sp_fetch_policy_terms`(IN `pId` int)
+BEGIN
+SELECT gpt.genericPolicyTermId, gpt.name, gpt.description, gpt.updateDate
+FROM  ". $table_prefix . "_policy_link_terms plt LEFT JOIN ". $table_prefix . "_generic_policy_terms gpt
+     ON plt.genericPolicyTermId = gpt.genericPolicyTermId
+WHERE plt.policyId = pId;
+END;;
+";
+array_push($sqlList, $sql3);
+
 $sql4 =
 "
 CREATE PROCEDURE `sp_fetch_policy`(IN `plt_id` tinyint)
