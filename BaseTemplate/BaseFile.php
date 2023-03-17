@@ -907,6 +907,16 @@ class Sanitize {
         self::$val = preg_replace(\'/[^A-Za-záíéóúñÁÍÉÓÚÑ!.?;\- ]/\', \'\', $val);
         return self::$val;
     }
+    
+    public static function cleanTextSomeSpecialNumbers($val) {
+        self::$val = preg_replace(\'/[^_0-9A-Za-záíéóúñÁÍÉÓÚÑ!.?;\- \/]/\', \'\', $val);
+        return self::$val;
+    }
+
+    public static function cleanTextForUrl($val) {
+        self::$val = preg_replace(\'/[^_0-9A-Za-záíéóúñÁÍÉÓÚÑ!.?;:=\- \/]/\', \'\', $val);
+        return self::$val;
+    }
 }
 ?>
 ';
