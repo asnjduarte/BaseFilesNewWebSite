@@ -484,7 +484,7 @@ $sql3 =
 "
 CREATE PROCEDURE `sp_insert_contact_info`(IN `f_n` text, IN `l_n` text, IN `e` text, IN `p` text, IN `c` text, IN `ipa` bit, IN `wuc` bit, IN `k` text)
 BEGIN
-insert into".$table_prefix."_contact_us(firstName, lastName, email, phone, createDate, comment, isPrivacyAgreed, wasUserContacted, eKey) 
+insert into ".$table_prefix."_contact_us(firstName, lastName, email, phone, createDate, comment, isPrivacyAgreed, wasUserContacted, eKey) 
 values (f_n, l_n, e, p, CURRENT_TIMESTAMP(), c, ipa, wuc, k);
 END
 ";
