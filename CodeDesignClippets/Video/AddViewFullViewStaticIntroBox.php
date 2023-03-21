@@ -30,5 +30,17 @@ $video_index = fopen(__DIR__.'\index.php', "a");
 fwrite($video_index, $video_index_data);
 
 
+$video_js_data = '
+<!--add to js.php -->
+$(\'.pLoad .mv-rgt0\').on(\'animationend webkitAnimationEnd\', function() {
+  setTimeout(function(){
+    $(".tran2").removeClass("dNoP");
+    $(".tran2").addClass("mv-rgt0");
+}, 1500);
+';
+$video_js = fopen(__DIR__.'\footerBundle.js', "a");
+fwrite($video_js, $video_js_data);
+
+
 
 ?>
