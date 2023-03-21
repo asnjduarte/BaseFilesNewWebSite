@@ -84,7 +84,16 @@ $about_us_css_data = '
 	100% {background-color:#01631b; color:white;}
 }
 .bgwh {background-color: white;}
-
+.jcfe {justify-content: flex-end;}
+.h400 {height:400px;}
+.bgGrOpac{background: linear-gradient(0deg, rgba(1,99,27,0.4992121848739496) 0%, rgba(1,99,27,0.5048144257703081) 100%); color:white;}
+.t10 {top:10%;}
+.z-1 {z-index: -1;}
+.bgtwhr.is-visible {animation: changeWhR 1s forwards; }
+@keyframes changeWhR {
+	0% {background-color:white; color:#01631b;}
+	100% {background-color:#01631b; color:white;}
+}
 ';
 $about_us_css = fopen(__DIR__.'\css\aboutUs.css', "w");
 fwrite($about_us_css, $about_us_css_data);
