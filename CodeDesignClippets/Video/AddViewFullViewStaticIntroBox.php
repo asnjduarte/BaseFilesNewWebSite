@@ -26,7 +26,7 @@ $video_index_data = '
 ?>
 </div>
 ';
-$video_index = fopen(__DIR__.'\view\ViewFullScreenWithStaticIntroBoxView.php', "w");
+$video_index = fopen(__DIR__.'\index.php', "a");
 fwrite($video_index, $video_index_data);
 
 
