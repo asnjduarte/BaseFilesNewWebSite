@@ -64,6 +64,7 @@ class Video {
         } catch (Exception $e) {
             $this->err->addError("Video.php", $e, "fetchVideoFromDb", $this->wpdb);
         }
+        return $result;
     }
 
     //set video objects and return an array of objects (if needed)
