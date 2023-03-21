@@ -34,12 +34,33 @@ fwrite($about_us_model, $about_us_model_data);
 
 
 $about_us_js_data = '
-/*add this to footerbundle.js*/
-$(\'.pLoad .mv-rgt0\').on(\'animationend webkitAnimationEnd\', function() {
-    setTimeout(function(){
-      $(".tran2").removeClass("dNoP");
-      $(".tran2").addClass("mv-rgt0");
-  }, 1500);
+$(document).ready(function(){
+	$(".auv").on("click", function(e){
+        $.ajax({
+            url: \'?page_id=29\',
+            type: \'post\',
+            dataType: \'json\',
+            headers: {\'CsrfToken\': $(\'meta[name="csrf-token"]\').attr(\'content\')},
+            data: {
+                fetch_about_us:"true", 
+                auvId:$(this).index()
+            },
+            success:function(response){
+                $("#auvImg").removeClass(function (index,className) {
+                    return (className.match (/(^|\s)auv\S+/g) || []).join(' ');
+                });
+                $("#auvImg").addClass(response[0]["img"]);
+                $("#auvTtl").html(response[0]["title"]);
+                $("#auvDsc").html(response[0]["description"]);
+                $("#auvTtl").toggleClass("mv-rgt");
+                $("#auvDsc").toggleClass("mv-rgt");
+                $("#auvTtl").toggleClass("mv-lft");
+                $("#auvDsc").toggleClass("mv-lft");
+            }
+        });
+    });
+});
+
 ';
 $about_us_js = fopen(__DIR__.'\js\aboutUs.js', "w");
 fwrite($about_us_js, $about_us_js_data);
