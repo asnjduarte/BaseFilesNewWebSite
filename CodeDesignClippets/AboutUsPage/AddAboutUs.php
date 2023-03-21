@@ -2,10 +2,9 @@
 
 $about_us_view_data = '
 <?php include get_theme_file_path(\'model/aboutUsModel.php\'); ?>
-<div id="gBox" class="dNoP lf1">
-<div class="w100 h700 rel flx mv-rgt0 mbFlxdc">
+<div class="w100 ha rel flx mv-rgt0 mbFlxdc">
     <div id="auvImg" class="bx100 cnnr <?php echo $aui[0]["img"];?> abs bpr"></div>
-    <div class="w50 h100 rel z1 flx aic fwrap acc bgtwhr lgt-rgt sos tt jcc mbhw100">
+    <div class="w50 ha rel z1 flx aic fwrap acc bgtwhr lgt-rgt sos tt jcc mbhw100">
         <div class="abs bx100 z-1"></div>
         <?php foreach($aui as $aui1k => $aui1v) { ?>
             <div class="auv gBoxShadow p1 w80 m10 trans300"><?php echo $aui1v["title"];?></div>
