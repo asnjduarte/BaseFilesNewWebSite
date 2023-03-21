@@ -117,4 +117,18 @@ function fetch_about_us_view() {
 $about_us_function = fopen(__DIR__.'\functions.php', "a");
 fwrite($about_us_function, $about_us_function_data);
 
+$about_us_api_data = '
+	/*add in api - aboutus.js*/
+	if(isset($_POST[\'fetch_about_us\'])){
+	$auvId = filter_var($_POST["auvId"], FILTER_SANITIZE_NUMBER_INT); 
+	$query = "CALL sp_fetch_about_us_specific(\'%d\');";
+	$aui = $wpdb->get_results($wpdb->prepare($query, $auvId), ARRAY_A);
+	echo json_encode($aui);
+	}
+	/*aboutus.js*/
+?>
+';
+$about_us_api = fopen(__DIR__.'\ajax\AjaxCalls.php', "a");
+fwrite($about_us_api, $about_us_api_data);
+
 ?>
