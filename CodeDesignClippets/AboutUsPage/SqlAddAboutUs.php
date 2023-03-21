@@ -8,12 +8,6 @@ $username = "root";
 $password = "root";
 $dbname = "local";
 
-$videoImg = "/wp-content/uploads/2023/images/videoTemplate/video1.jpg";
-$video = "/wp-content/uploads/2023/03/DOOA-Terra-Base-Relaxing-Maintenance-Session.mp4";
-$videoText = "Video 1";
-
-
-
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
 // Check connection
