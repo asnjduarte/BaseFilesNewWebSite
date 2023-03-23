@@ -94,6 +94,21 @@ $about_us_css_data = '
 	0% {background-color:white; color:#01631b;}
 	100% {background-color:#01631b; color:white;}
 }
+
+@media screen and (min-width: 1600px) {
+   .h400 {height:24vw;}
+   .m10 {margin:.5vw;}
+}
+
+@media screen and (max-width: 1080px) {
+    .t10 {top:2%;}
+    .iphha {height:auto;}
+}
+
+@media screen and (max-width: 820px) {
+    .t10 {top:1.5%;}
+}
+
 ';
 $about_us_css = fopen(__DIR__.'\css\AboutUs.css', "w");
 fwrite($about_us_css, $about_us_css_data);
