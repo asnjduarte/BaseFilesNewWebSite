@@ -253,7 +253,7 @@ burger.onclick = function() {
 }());
 /*end drop down side menu with photo*/
 ';
-$ddsmwp_js = fopen(__DIR__.'\js\footerBundle.js', "a");
+$ddsmwp_js = fopen(__DIR__.'\js\FooterBundle.js', "a");
 fwrite($ddsmwp_js, $ddsmwp_js_data);
 
 
