@@ -93,8 +93,8 @@ function fetch_tcm(){add_shortcode(\'display_menu\', \'fetch_two_column\');}
 add_action(\'init\', \'fetch_tcm\');
 function fetch_two_column() {
     ob_start(); 
-    include_once get_theme_file_path(\'view/twoColumnHeader.php\'); 
-    wp_enqueue_style(\'twoColumnHeader-css\', get_template_directory_uri().\'/css/twoColumnHeader.css\', \'\', microtime());
+    include_once get_theme_file_path(\'view/TwoColumnHeader.php\'); 
+    wp_enqueue_style(\'twoColumnHeader-css\', get_template_directory_uri().\'/css/TwoColumnHeader.css\', \'\', microtime());
     return ob_get_clean();
 }
 ?>
@@ -158,7 +158,7 @@ $splash_view_dir = __DIR__.'\view';
 if (!file_exists($splash_view_dir)) {
   mkdir($splash_view_dir, 0777, true);
 }
-$splash_view = fopen($splash_view_dir ."\splash.php", "w");
+$splash_view = fopen($splash_view_dir ."\Splash.php", "w");
 fwrite($splash_view, $splash_view_data);
 
 $splash_function_data = '
@@ -168,8 +168,8 @@ function fetch_splash(){add_shortcode("display_splash", "fetch_splash_view");}
 add_action( "init", "fetch_splash");
 function fetch_splash_view() {
     ob_start(); 
-    include_once get_theme_file_path("view/splash.php"); 
-    wp_enqueue_style("splash-css", get_template_directory_uri()."/css/splash.css", "", microtime());
+    include_once get_theme_file_path("view/Splash.php"); 
+    wp_enqueue_style("splash-css", get_template_directory_uri()."/css/Splash.css", "", microtime());
     return ob_get_clean();
 }
 ?>
@@ -202,7 +202,7 @@ $splash_css_data = '
       background: #7e110c;
   }
 ';
-$splash_css = fopen(__DIR__.'\css\splash.css', "w");
+$splash_css = fopen(__DIR__.'\css\Splash.css', "w");
 fwrite($splash_css, $splash_css_data);
 
 $splash_header_data = '
@@ -211,5 +211,14 @@ $splash_header_data = '
 ';
 $splash_header = fopen(__DIR__.'\header.php', "a");
 fwrite($splash_header, $splash_header_data);
+
+$splash_index_data = '
+<!--add this after the header in the index.php does not need a closing div-->
+<div id="gBox" class="dNoP lf1">
+';
+$splash_index = fopen(__DIR__.'\index.php', "a");
+fwrite($splash_index, $splash_index_data);
+
+
 
 ?>
