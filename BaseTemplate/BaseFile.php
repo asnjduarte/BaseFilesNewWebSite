@@ -238,14 +238,23 @@ li {list-style: none;padding: 5px;}
 @media screen and (min-width: 1600px) {
     .lf1, button, input[type="search"], input[type="text"], input[type="button"], input[type="password"] {font-size: 1.2vw;}
     .ftbx30 img, .bx30 {width: 1.6vw;height: 1.6vw;}
+    h2 {font-size:3.3vw;}
+    h3 {font-size:2vw;}
+    .p10 {padding:1vw;}
+    .gBoxShadow, input[type="text"] {padding: 1vw 0.5vw;border-radius: 0.3vw;box-shadow: 0.1vw 0.7vw 0.5vw -0.5vw #01631b;}
+    .gBoxShadow:hover, input[type="text"]:hover {box-shadow: 0.1vw 0.7vw 0.5vw -0.5vw #0b3716;}
 }
 @media screen and (max-width:1024px) {
-	.iph_dNo {display: none;}
-	.iph_w90 {width:90%;}
+    .iph_dNo {display: none;}
+    .iph_w90 {width:90%;}
     .ip_h100 {height:100%;}
     .iph_ha {height: auto;}
+    .iphw100 {width:100%;}
+    .iphh75 {height:75%;}
 }
 @media screen and (max-width: 820px) {
+    .iphh55 {height:55%;}
+    .iphflxdc {flex-direction:column;}
     .mb_Flxdc {flex-direction: column;}
     .mb_ha {height:auto;}
     .mb_rel {position:relative;}
