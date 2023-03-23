@@ -119,7 +119,7 @@ function my_scripts() {
     wp_enqueue_style(\'main_styles\', get_stylesheet_uri(), \'\', microtime());
     wp_enqueue_style(\'google-font-montserrat\', \'https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap\', false );
     wp_enqueue_script(\'jqry_min_3.6.0\', \'https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js\', NULL, \'1.0.0\', false);
-    wp_enqueue_script(\'footer-script-bundle\', get_template_directory_uri().\'/js/footerBundle.js\', NULL, microtime(), true);
+    wp_enqueue_script(\'footer-script-bundle\', get_template_directory_uri().\'/js/FooterBundle.js\', NULL, microtime(), true);
 
     if( is_page( array(5)) || is_front_page() ){  
         //wp_enqueue_style(\'indx-css\', get_template_directory_uri().\'/css/indx.css\', \'\', microtime());
@@ -644,7 +644,7 @@ function isElementInViewport(el) {
 }());
 /*End Scroll animation*/
 ';
-$splash_js = fopen(__DIR__.'\js\footerBundle.js', "w");
+$splash_js = fopen(__DIR__.'\js\FooterBundle.js', "w");
 fwrite($splash_js, $splash_js_data);
 
 /*used for the database*/
