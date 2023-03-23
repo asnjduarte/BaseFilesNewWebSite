@@ -220,7 +220,7 @@ $(".smGenericPopUp .gvpBtnCancel").on("click", function(e) {
 });
 /*end generic popup*/
 ';
-$generic_js = fopen(__DIR__.'\js\footerBundle.js', "a");
+$generic_js = fopen(__DIR__.'\js\FooterBundle.js', "a");
 fwrite($generic_js, $generic_js_data);
 
 $generic_factory_data = '
@@ -269,13 +269,13 @@ $generic_css_data = '
     100% {visibility: visible;opacity: 1;width: 100%;transform: translateX(0px);-webkit-transform: translateX(0px)}
 }
 ';
-$generic_css = fopen(__DIR__.'\css\genericPopUp.css', "w");
+$generic_css = fopen(__DIR__.'\css\GenericPopUp.css', "w");
 fwrite($generic_css, $generic_css_data);
 
 $generic_functions_data = '
 /*add this to the my_scripts in the functions.php*/
 if( is_page( array(5)) || is_front_page() ){  
-    wp_enqueue_style(\'generic-css\', get_template_directory_uri().\'/css/genericPopUp.css\', \'\', microtime());
+    wp_enqueue_style(\'generic-css\', get_template_directory_uri().\'/css/GenericPopUp.css\', \'\', microtime());
 } 
 
 <?php
