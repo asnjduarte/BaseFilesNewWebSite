@@ -39,7 +39,7 @@ $(\'.pLoad .mv-rgt0\').on(\'animationend webkitAnimationEnd\', function() {
 }, 1500);
 });
 ';
-$video_js = fopen(__DIR__.'\footerBundle.js', "a");
+$video_js = fopen(__DIR__.'\FooterBundle.js', "a");
 fwrite($video_js, $video_js_data);
 
 
