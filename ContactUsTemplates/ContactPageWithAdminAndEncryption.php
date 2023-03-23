@@ -39,7 +39,7 @@ $css_data = '
 .l5 {left:5px;}
 .ptb5 {padding-top:5px; padding-bottom:5px;}
 ';
-$css = fopen(__DIR__.'\css\contact.css', "w");
+$css = fopen(__DIR__.'\css\Contact.css', "w");
 fwrite($css, $css_data);
 
 $js_data = '
@@ -116,7 +116,7 @@ function checkContactFields(){
 	return returnValue;
 }
 ';
-$js = fopen(__DIR__.'\js\contact.js', "w");
+$js = fopen(__DIR__.'\js\Contact.js', "w");
 fwrite($js, $js_data);
 
 $user_dir = __DIR__.'\model\user';
@@ -295,13 +295,13 @@ $view_data = '
 	</div>
 	<div class="h700 w50 abs bgDkGr baf r0 mb_w100 mb_ha mb_rel"></div>
 	<div class="w50 ma bgDkGr rel p20 tc mb_w100">
-		<?php include get_theme_file_path(\'view/contactFormView.php\');   ?>
+		<?php include get_theme_file_path(\'view/ContactFormView.php\');   ?>
 	</div>
 </div>
 </div>
 
 ';
-$view = fopen(__DIR__.'\view\twoColumnContactView.php', "w");
+$view = fopen(__DIR__.'\view\TwoColumnContactView.php', "w");
 fwrite($view, $view_data);
 
 $contact_admin_form_view_data = '
@@ -332,7 +332,7 @@ if( array_intersect($allowed_roles, $user->roles ) ) {
     </div>
 <?php } ?>
 ';
-$contact_admin_form_view = fopen(__DIR__.'\view\adminContactView.php', "w");
+$contact_admin_form_view = fopen(__DIR__.'\view\AdminContactView.php', "w");
 fwrite($contact_admin_form_view, $contact_admin_form_view_data);
 
 $contact_form_view_data = '
@@ -378,7 +378,7 @@ $contact_form_view_data = '
 </form>
 <div id="contactMessageId"></div>
 ';
-$contact_form_view = fopen(__DIR__.'\view\contactFormView.php', "w");
+$contact_form_view = fopen(__DIR__.'\view\ContactFormView.php', "w");
 fwrite($contact_form_view, $contact_form_view_data);
 
 $contact_admin_function_data = '
@@ -402,7 +402,7 @@ function fetch_acv(){add_shortcode(\'display_admin_contact_view\', \'fetch_admin
 add_action(\'init\', \'fetch_acv\');
 function fetch_admin_contact_view() {
     ob_start(); 
-    include_once get_theme_file_path(\'view/adminContactView.php\'); 
+    include_once get_theme_file_path(\'view/AdminContactView.php\'); 
     return ob_get_clean();
 }
 ?>
@@ -430,9 +430,9 @@ function fetch_cv(){add_shortcode(\'display_contact_view\', \'fetch_contact_view
 add_action(\'init\', \'fetch_cv\');
 function fetch_contact_view() {
     ob_start(); 
-    include_once get_theme_file_path(\'view/twoColumnContactView.php\'); 
-    wp_enqueue_style(\'contact-css\', get_template_directory_uri().\'/css/contact.css\', \'\', microtime());
-    wp_enqueue_script(\'contact-js\', get_template_directory_uri().\'/js/contact.js\', NULL, microtime(), true);
+    include_once get_theme_file_path(\'view/TwoColumnContactView.php\'); 
+    wp_enqueue_style(\'contact-css\', get_template_directory_uri().\'/css/Contact.css\', \'\', microtime());
+    wp_enqueue_script(\'contact-js\', get_template_directory_uri().\'/js/Contact.js\', NULL, microtime(), true);
     return ob_get_clean();
 }
 ?>
