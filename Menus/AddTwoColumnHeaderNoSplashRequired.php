@@ -6,8 +6,8 @@ function fetch_tcm(){add_shortcode(\'display_menu\', \'fetch_two_column\');}
 add_action(\'init\', \'fetch_tcm\');
 function fetch_two_column() {
     ob_start(); 
-    include_once get_theme_file_path(\'view/twoColumnHeader.php\'); 
-    wp_enqueue_style(\'twoColumnHeader-css\', get_template_directory_uri().\'/css/twoColumnHeader.css\', \'\', microtime());
+    include_once get_theme_file_path(\'view/TwoColumnHeader.php\'); 
+    wp_enqueue_style(\'twoColumnHeader-css\', get_template_directory_uri().\'/css/TwoColumnHeader.css\', \'\', microtime());
     return ob_get_clean();
 }
 ?>
