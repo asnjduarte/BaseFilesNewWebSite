@@ -17,7 +17,7 @@ $about_us_view_data = '
     </div>
 </div>
 ';
-$about_us_view = fopen(__DIR__.'\view\aboutUsView.php', "w");
+$about_us_view = fopen(__DIR__.'\view\AboutUsView.php', "w");
 fwrite($about_us_view, $about_us_view_data);
 
 $about_us_model_data = '
@@ -28,7 +28,7 @@ global $wpdb;
     $aui = $wpdb->get_results($wpdb->prepare($query), ARRAY_A);
 ?>
 ';
-$about_us_model = fopen(__DIR__.'\model\aboutUsModel.php', "w");
+$about_us_model = fopen(__DIR__.'\model\AboutUsModel.php', "w");
 fwrite($about_us_model, $about_us_model_data);
 
 
@@ -46,7 +46,7 @@ $(document).ready(function(){
             },
             success:function(response){
                 $("#auvImg").removeClass(function (index,className) {
-                    return (className.match (/(^|\s)auv\S+/g) || []).join(' ');
+                    return (className.match (/(^|\s)auv\S+/g) || []).join(\' \');
                 });
                 $("#auvImg").addClass(response[0]["img"]);
                 $("#auvTtl").html(response[0]["title"]);
@@ -61,12 +61,12 @@ $(document).ready(function(){
 });
 
 ';
-$about_us_js = fopen(__DIR__.'\js\aboutUs.js', "w");
+$about_us_js = fopen(__DIR__.'\js\AboutUs.js', "w");
 fwrite($about_us_js, $about_us_js_data);
 
 $about_us_css_data = '
 .bgtr {background: linear-gradient(0deg, rgba(113,2,2,0.6591678907891281) 0%, rgba(255,255,255,1) 100%);}
-.auv1 {background-image:url(\'http://terrabase.com/wp-content/themes/TerraBase/images/xmain_logo.jpg.pagespeed.ic.qPtjLkdzQH.jpg\');}
+.auv1 {background-image:url(\'/wp-content/uploads/2023/03/logo\');}
 .auv2 {background-image:url(\'/wp-content/uploads/2023/03/Untitled-design-1.jpg\');}
 .auv3 {background-image:url(\'/wp-content/uploads/2023/03/Untitled-design-2.jpg\');}
 .bpr {background-position:right;}
@@ -95,7 +95,7 @@ $about_us_css_data = '
 	100% {background-color:#01631b; color:white;}
 }
 ';
-$about_us_css = fopen(__DIR__.'\css\aboutUs.css', "w");
+$about_us_css = fopen(__DIR__.'\css\AboutUs.css', "w");
 fwrite($about_us_css, $about_us_css_data);
 
 
@@ -107,9 +107,9 @@ function fetch_auv(){add_shortcode(\'display_about_us\', \'fetch_about_us_view\'
 add_action( \'init\', \'fetch_auv\');
 function fetch_about_us_view() {
     ob_start(); 
-    include_once get_theme_file_path(\'view/aboutUsView.php\'); 
-    wp_enqueue_style(\'aboutUs-css\', get_template_directory_uri().\'/css/aboutUs.css\', \'\', microtime());
-    wp_enqueue_script(\'aboutUs-js\', get_template_directory_uri().\'/js/aboutUs.js\', NULL, microtime(), true);
+    include_once get_theme_file_path(\'view/AboutUsView.php\'); 
+    wp_enqueue_style(\'aboutUs-css\', get_template_directory_uri().\'/css/AboutUs.css\', \'\', microtime());
+    wp_enqueue_script(\'aboutUs-js\', get_template_directory_uri().\'/js/AboutUs.js\', NULL, microtime(), true);
     return ob_get_clean();
 }
 ?>
