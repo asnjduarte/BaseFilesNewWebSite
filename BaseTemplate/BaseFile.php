@@ -245,20 +245,17 @@ li {list-style: none;padding: 5px;}
     .gBoxShadow:hover, input[type="text"]:hover {box-shadow: 0.1vw 0.7vw 0.5vw -0.5vw #0b3716;}
 }
 @media screen and (max-width:1024px) {
-    .iph_dNo {display: none;}
-    .iph_w90 {width:90%;}
-    .ip_h100 {height:100%;}
-    .iph_ha {height: auto;}
     .iphw100 {width:100%;}
     .iphh75 {height:75%;}
+    .iphha {height:auto;}
+    .iphw45 {width: 45%;}
 }
 @media screen and (max-width: 820px) {
-    .iphh55 {height:55%;}
-    .iphflxdc {flex-direction:column;}
-    .mb_Flxdc {flex-direction: column;}
-    .mb_ha {height:auto;}
-    .mb_rel {position:relative;}
-    .mb_w100 {width:100%;}
+    .iphv55 {height:55%;}
+    .iphvflxdc {flex-direction:column;}
+    .iphvw100 {width: 100%;}
+    .iphvw90 {width:90%;}
+    .iphvha {height:auto;}
 }
 ';
 $css = fopen(__DIR__.'\style.css', "w");
