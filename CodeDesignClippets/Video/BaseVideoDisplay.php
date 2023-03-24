@@ -109,9 +109,9 @@ fwrite($video_model, $video_model_data);
 
 $video_view_data = '
 <?php include_once get_theme_file_path(\'controller/VideoController.php\');  ?>
-<video playsinline="" preload="metadata" controls="controls" autoplay="autoplay" muted="true" class="w100 h100 iph_h40 mbv_ha" width="100" height="100" 
+<video playsinline="" preload="metadata" controls="controls" autoplay="autoplay" muted="true" class="w100 h100 iphh75 iphv55 mbh100 mbha" width="100" height="100" 
         poster="<?php echo $videoInfo[0]->getImage(); ?>">
-        <source type="video/mp4" src="<?php echo $videoInfo[0]->getVideoLink(); ?>">
+        <source type="video/mp4" src="/terrabase/wp-content/uploads/2023/03/DOOA-Terra-Base-Relaxing-Maintenance-Session.mp4">
         <a href="#"></a> 
 </video>
 ';
