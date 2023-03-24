@@ -262,7 +262,7 @@ $view_data = '
 <?php include_once get_theme_file_path(\'model/commonFunctions/Factory.php\'); ?>	
 <?php include get_theme_file_path(\'controller/FooterWithCachingController.php\');  ?>
 <div class="lf1 pt3">
-<div class="w100 h700 flx rel mb_Flxdc mb_ha">
+<div class="w100 ha flx rel mb_Flxdc mb_ha">
 	<div class="h700 w50 abs logoFoto baf abs mb_w100 cnnr o1"></div>
 	<div class="w50 ma p20 mb_w100 z1">
 		<div class="gBx gBxShd2Wht">
