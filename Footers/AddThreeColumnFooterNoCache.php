@@ -2,7 +2,7 @@
 
 $three_column_footer_no_cache_data = '
 <?php include_once get_theme_file_path(\'controller/FooterControllerDb.php\');  ?>
-<footer class="site-footer">
+<footer class="site-footer lf1">
     <div class="site-footer__inner">
         <div class="flx mbFlxdc">
             <div class="flx1">
