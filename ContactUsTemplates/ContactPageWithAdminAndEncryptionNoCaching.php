@@ -268,7 +268,7 @@ $view_data = '
 		<div class="gBx gBxShd2Wht">
 			<h2>Directions</h2>
 			<div>
-				<div class="ptb5"><?php echo $companyInfo[5]->getValue();?></div>
+				<div class="ptb5"><?php echo $companyInfo[5]->getName();?></div>
 			</div>
 		</div>
         <div class="gBx gBxShd2Wht">
