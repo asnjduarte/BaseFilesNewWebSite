@@ -263,7 +263,7 @@ $view_data = '
 <?php include get_theme_file_path(\'controller/FooterControllerDb.php\');  ?>
 <div class="lf1 pt3">
 <div class="w100 ha flx rel mb_Flxdc mb_ha">
-	<div class="h700 w50 abs logoFoto baf abs mb_w100 cnnr o1"></div>
+	<div class="h700 w50 abs logoFoto baf abs mb_w100 cnnr o1 z-1"></div>
 	<div class="w50 ma p20 mb_w100 z1">
 		<div class="gBx gBxShd2Wht">
 			<h2>Directions</h2>
@@ -293,7 +293,7 @@ $view_data = '
 			</div>
 		</div>
 	</div>
-	<div class="h700 w50 abs bgDkGr baf r0 mb_w100 mb_ha mb_rel"></div>
+	<div class="h700 w50 abs bgDkGr baf r0 mb_w100 mb_ha mb_rel z-1"></div>
 	<div class="w50 ma bgDkGr rel p20 tc mb_w100">
 		<?php include get_theme_file_path(\'view/contactFormView.php\');   ?>
 	</div>
