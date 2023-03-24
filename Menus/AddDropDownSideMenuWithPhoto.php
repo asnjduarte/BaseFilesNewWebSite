@@ -123,7 +123,7 @@ $ddsmwp_css_general_data = '
     100% {opacity: 1;transform: translateY(0);}
   }
 @media screen and (min-width: 1600px) {
-    .window {height: 2vw;width: 2.5vw;}
+    /*.window {height: 2vw;width: 2.5vw;}*/
 }
 @media screen and (max-width: 720px) {
     .mbMenu {display: block;visibility: visible;animation: showMenuBar 300ms linear;position: fixed;right: 0px;top: 0px;z-index:1;}
