@@ -244,6 +244,7 @@ li {list-style: none;padding: 5px;}
     .gBoxShadow, input[type="text"] {padding: 1vw 0.5vw;border-radius: 0.3vw;box-shadow: 0.1vw 0.7vw 0.5vw -0.5vw #01631b;}
     .gBoxShadow:hover, input[type="text"]:hover {box-shadow: 0.1vw 0.7vw 0.5vw -0.5vw #0b3716;}
     .h700 {height:50vw;}
+     input {width:1vw;height:1vw;margin-top:.5vw;}
 }
 @media screen and (max-width:1024px) {
     .iphw100 {width:100%;}
