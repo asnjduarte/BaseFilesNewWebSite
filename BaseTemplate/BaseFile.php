@@ -245,6 +245,7 @@ li {list-style: none;padding: 5px;}
     .gBoxShadow:hover, input[type="text"]:hover {box-shadow: 0.1vw 0.7vw 0.5vw -0.5vw #0b3716;}
     .h700 {height:50vw;}
      input {width:1vw;height:1vw;margin-top:.5vw;}
+     li {padding:.5vw;}
 }
 @media screen and (max-width:1024px) {
     .iphw100 {width:100%;}
