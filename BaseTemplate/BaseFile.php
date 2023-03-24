@@ -257,6 +257,7 @@ li {list-style: none;padding: 5px;}
     .iphvw100 {width: 100%;}
     .iphvw90 {width:90%;}
     .iphvha {height:auto;}
+    h2 {font-size:46px;}
 }
 ';
 $css = fopen(__DIR__.'\style.css', "w");
