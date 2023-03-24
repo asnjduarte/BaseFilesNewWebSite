@@ -5,7 +5,7 @@ $thirdColumn = "Contact Us";
 
 $three_column_footer_with_cache_data = '
 <?php include get_theme_file_path(\'controller/FooterWithCachingController.php\');  ?>
-<footer class="site-footer">
+<footer class="site-footer lf1">
     <div class="site-footer__inner">
         <div class="flx mbFlxdc">
             <div class="flx1">
