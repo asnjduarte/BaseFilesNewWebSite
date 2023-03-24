@@ -87,7 +87,7 @@ $policy_model = fopen(__DIR__.'\model\company\Policy.php', "w");
 fwrite($policy_model, $policy_model_data);
 
 $generic_policy_data = '
-<div class="pt3">
+<div class="pt3 lf1">
     <div class="w100 flx flxdc aic">
         <h1 class="tc"><?php echo $policy->getPolicyName();?></h1>
         <div class="w80">
