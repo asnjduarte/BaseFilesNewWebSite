@@ -345,7 +345,7 @@ $contact_form_view_data = '
         </div>
         <div class="lft-rgt tt td50 sos">
             <label for="commentsText">Message*:</label>
-            <textarea name="comment" id="commentsText" rows="4" cols="30" class="w100 gBoxShadow"></textarea>
+            <textarea name="comment" id="commentsText" rows="4" cols="30" class="w100 gBoxShadow lf1"></textarea>
             <div id="comment_error" class="val_error"></div>
         </div>
         <div class="lft-rgt tt td50 sos">
