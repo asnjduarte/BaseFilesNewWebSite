@@ -370,7 +370,7 @@ $contact_form_view_data = '
         </div>
         <div class="lft-rgt tt td250 sos w35 ma">
             <div id="spinner" class="w100 abs t30 l5"> </div>
-            <input id="wp-send-email" class="gBx gBxShd2Wht w100" type="submit" value="Send Email" name="wp-send-email">
+            <input id="wp-send-email" class="gBx gBxShd2Wht gBoxShadow w100" type="submit" value="Send Email" name="wp-send-email">
         </div>
     </fieldset>
         <input type="hidden" name="submitted" id="submitted" value="true"/>
