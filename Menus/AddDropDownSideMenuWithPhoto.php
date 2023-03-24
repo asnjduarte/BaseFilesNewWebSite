@@ -74,7 +74,7 @@ $ddsmwp_css_general_data = '
 .btmBar {transform: translateY(6px) rotate(0deg);}
 .menu-item {margin-top: 15px;opacity: 0;line-height: 1.1;}
 .o1 { opacity:.1;}
-.show-menu-bar {display: block;visibility: visible;animation: showMenuBar 300ms linear;position: fixed;right: 0px;top: 0px;z-index:1;}
+.show-menu-bar {display: block;visibility: visible;animation: showMenuBar 300ms linear;position: fixed;right: 0px;top: 0px;z-index:99;}
 @keyframes showMenuBar {
 	0% {right: -4%;opacity: 0;visibility: hidden;}
 	100% {right: 0px;opacity: 1;visibility: visible;}
@@ -124,6 +124,8 @@ $ddsmwp_css_general_data = '
   }
 @media screen and (min-width: 1600px) {
     /*.window {height: 2vw;width: 2.5vw;}*/
+    .burger-container {height: 4vw;width: 4vw;padding-top: 1.5vw;}
+    #burger .bbar {margin-top:.3vw;}
 }
 @media screen and (max-width: 720px) {
     .mbMenu {display: block;visibility: visible;animation: showMenuBar 300ms linear;position: fixed;right: 0px;top: 0px;z-index:1;}
