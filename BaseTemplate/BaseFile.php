@@ -940,6 +940,25 @@ class Sanitize {
         self::$val = preg_replace(\'/[^_0-9A-Za-záíéóúñÁÍÉÓÚÑ!.?;:=\- \/]/\', \'\', $val);
         return self::$val;
     }
+    
+    public static function cleanLocation($val) {
+	self::$val = preg_replace(\'/[^0-9A-Za-záíéóúñÁÍÉÓÚÑ#.,\- ]/\', \'\', $val);
+	return self::$val;
+    }
+    
+    public static function validateDate($date, $format = \'Y-m-d\') {
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
+    }
+    
+    public static function validateTime($date, $format = \'H:i\') {
+        //if date is being pulled from the database use this format
+        if (strlen($date) > 5) {$format = \'H:i:s\';}
+
+        //create time format
+        $d = DateTime::createFromFormat($format, $date);
+        return $d && $d->format($format) == $date;
+    }
 }
 ?>
 ';
