@@ -587,10 +587,10 @@ $(document).ready(function(){
  
  });
 
-/* sanitize with jquery */
+ /* sanitize with jquery */
  function txtOnly() {
     //var regExp = 
-    var string = $(this).val().replace(/[^a-zA-Z ]/g,""); 
+    var string = $(this).val().replace(/[^a-zA-ZáíóúéÁÍÓÚÉñÑ ]/g,""); 
     $(this).val(string);
    }
    $(\'.txtOnly\').keyup(txtOnly);
@@ -602,16 +602,28 @@ $(document).ready(function(){
    $(\'[type="tel"]\').keyup(numOnly);
    
    function acceptedChar() {
-    var string = $(this).val().replace(/[^a-zA-Z#0-9áéíóúñ:\/.\-; ]/g,\'\'); 
+    var string = $(this).val().replace(/[^a-zA-Z#0-9áíóúéÁÍÓÚÉñÑ!:\/.\-; ]/g,\'\'); 
     $(this).val(string);
    }
    $(\'.acceptedChar\').keyup(acceptedChar);
+
+   function acceptedUrl() {
+    var string = $(this).val().replace(/[^_0-9A-Za-záíéóúñÁÍÉÓÚÑ!.?;:=#&\- \/]/g,\'\'); 
+    $(this).val(string);
+   }
+   $(\'.acceptedUrl\').keyup(acceptedUrl);
    
    function emailChar() {
-    var string = $(this).val().replace(/[^a-zA-Z@0-9._\-]/g,\'\'); 
+    var string = $(this).val().replace(/[^a-zA-ZáíóúéÁÍÓÚÉñÑ@0-9._\-]/g,\'\'); 
     $(this).val(string);
    }
    $(\'.emailChar\').keyup(emailChar);
+
+   function acceptedNumbers() {
+    var string = $(this).val().replace(/[^0-9:\-]/g,\'\'); 
+    $(this).val(string);
+   }
+   $(\'.acceptedNumbers\').keyup(acceptedNumbers);
    /* end sanitize with jquery */
    
    /*Scroll animation*/
