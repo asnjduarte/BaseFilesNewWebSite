@@ -152,7 +152,7 @@ $(document).ready(function(){
             type:\'POST\',
             url:\'?page_id=6\',
             dataType: "json",
-            headers: {\'Csrftoken\': $(\'meta[name="csrf-token"]').attr(\'content\')},
+            headers: {\'Csrftoken\': $(\'meta[name="csrf-token"]\').attr(\'content\')},
             data: {
                 ncndaGetBusinesses: true,
             },
