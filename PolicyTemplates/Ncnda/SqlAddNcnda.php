@@ -8,25 +8,26 @@ $password = "root";
 $dbname = "local";
 
 
-$b1Name = "Maranatha Marketing Inc.";
-$b1Addr = "45615 Tamihi Way";
-$b1AddrNum = 51;
-$b1Zip = "V2R 0X4";
-$b1City = 10;
+$b1Name = "x";
+$b1Addr = "x";
+$b1AddrNum = 1;
+$b1Zip = "x";
+$b1City = 1;
 $b1CreateDate = date("Y-m-d");
 $b1UpdateDate = date("Y-m-d");
 $b1LastUpdatedBy = 1;
 $b1IsActive = 1;
 
-$b2Name = "Life 100";
-$b2Addr = "NE 191 St., Ste. 500";
-$b2AddrNum = "2875";
-$b2Zip = 33180;
-$b2City = 11;
+$b2Name = "x";
+$b2Addr = "x";
+$b2AddrNum = "1";
+$b2Zip = 1;
+$b2City = 1;
 $b2CreateDate = date("Y-m-d");
 $b2UpdateDate = date("Y-m-d");
 $b2LastUpdatedBy = 1;
 $b2IsActive = 1;
+
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $dbname);
@@ -35,27 +36,7 @@ if ($conn->connect_error) {
   die("Connection failed: " . $conn->connect_error);
 }
 
-//wp_business - x
-//wp_business_contact - x
-//wp_negotiation_role - x
-
-//sp_update_business - x
-//sp_insert_business - x
-//sp_fetch_all_businesses - x
-//sp_fetch_specific_business - x
-//sp_fetch_country_by_city - x
-//sp_fetch_all_active_business_contacts_by_company - x
-//sp_fetch_specific_business_contact - x
-
-//controller\BusinessesController.php
-//controller\SpecificBusinessController.php
-//js\ncnda.js
-//js\ncndaForm.js
-//model\business\Businesses.php
-//view\policy\NcndaForm.php
-//view\policy\NcndaInitialQuestion.php
-//view\policy\NcndaView.php
-
+$sqlList = array();
 $sql1 = "
 DELIMITER ;;
 CREATE PROCEDURE `sp_update_business`(IN `b_id` int, IN `b_n` varchar(50), IN `b_a` varchar(40), IN `b_ab` int, IN `b_z` varchar(20), IN `ct_od` int, IN `u_id` bigint, IN `ia` tinyint)
@@ -225,5 +206,15 @@ INSERT INTO `. $table_prefix ._negotiation_role` (`negotiationRoleId`, `nrName`,
 (3,	'Seller',	'The one who is selling the product.');
 ";
 array_push($sqlList, $sql13);
+
+foreach ($sqlList as $k => $v) {
+  if ($conn->query($v) === TRUE) {
+      echo "Tables created successfully" . PHP_EOL;
+    } else {
+      echo "Error creating table: " . $conn->error . " " . PHP_EOL;
+    }
+}
+
+$conn->close();
 
 ?>
