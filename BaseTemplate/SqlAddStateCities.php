@@ -15,21 +15,29 @@ if ($conn->connect_error) {
 }
 
 $sqlList = array();
+
+$sql4 = "
+INSERT INTO `". $table_prefix . "_country` (`countryId`, `name`, `isActive`, `abbr`) VALUES
+(2,	'Mexico',	CONV('1', 2, 10) + 0,	'MX'),
+(3,	'Canada',	CONV('1', 2, 10) + 0,	'CN');
+";
+array_push($sqlList, $sql4);
+
 $sql1 = "
-CREATE TABLE `. $table_prefix ._state` (
+CREATE TABLE `". $table_prefix . "_state` (
   `stateId` int(11) NOT NULL AUTO_INCREMENT,
   `sName` varchar(35) NOT NULL,
   `countryId` int(11) unsigned NOT NULL,
   `sAbbr` varchar(4) CHARACTER SET utf8 COLLATE utf8_general_ci DEFAULT NULL,
   PRIMARY KEY (`stateId`),
   KEY `countryId` (`countryId`),
-  CONSTRAINT `. $table_prefix ._state_ibfk_1` FOREIGN KEY (`countryId`) REFERENCES `. $table_prefix ._country` (`countryId`)
+  CONSTRAINT `". $table_prefix . "_state_ibfk_1` FOREIGN KEY (`countryId`) REFERENCES `". $table_prefix . "_country` (`countryId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ";
 array_push($sqlList, $sql1);
 
 $sql2 = "
-INSERT INTO `. $table_prefix ._state` (`stateId`, `sName`, `countryId`, `sAbbr`) VALUES
+INSERT INTO `". $table_prefix . "_state` (`stateId`, `sName`, `countryId`, `sAbbr`) VALUES
 (1,	'Aguascalientes',	2,	'AG'),
 (2,	'Baja California',	2,	'BC'),
 (3,	'Baja California Sur',	2,	'BS'),
@@ -109,19 +117,19 @@ INSERT INTO `. $table_prefix ._state` (`stateId`, `sName`, `countryId`, `sAbbr`)
 array_push($sqlList, $sql2);
 
 $sql3 = "
-CREATE TABLE `. $table_prefix ._city` (
+CREATE TABLE `". $table_prefix . "_city` (
   `cityId` int(11) NOT NULL AUTO_INCREMENT,
   `cName` varchar(40) NOT NULL,
   `stateId` int(11) NOT NULL,
   PRIMARY KEY (`cityId`),
   KEY `stateId` (`stateId`),
-  CONSTRAINT `. $table_prefix ._city_ibfk_1` FOREIGN KEY (`stateId`) REFERENCES `. $table_prefix ._state` (`stateId`)
+  CONSTRAINT `". $table_prefix . "_city_ibfk_1` FOREIGN KEY (`stateId`) REFERENCES `". $table_prefix . "_state` (`stateId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 ";
 array_push($sqlList, $sql3);
 
 $sql4 = "
-INSERT INTO `. $table_prefix ._city` (`cityId`, `cName`, `stateId`) VALUES
+INSERT INTO `". $table_prefix . "_city` (`cityId`, `cName`, `stateId`) VALUES
 (1,	'Anchorage',	17),
 (2,	'San Miguel De Allende',	10),
 (3,	'Leon',	10),
