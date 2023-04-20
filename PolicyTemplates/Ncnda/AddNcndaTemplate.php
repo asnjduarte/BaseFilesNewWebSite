@@ -717,4 +717,61 @@ $ncnda_view_data = '
 $ncnda_view = fopen(__DIR__.'\view\policy\NcndaInitialQuestion.php', "w");
 fwrite($ncnda_view, $ncnda_view_data);
 
+$functions_data = '
+<?php
+
+$page_slug = \'ncnda-view\'; 
+$new_page = array(
+    \'post_type\'     => \'page\', 				
+    \'post_title\'    => \'Ncnda Download View\',	// Title 
+    \'post_content\'  => \'[display_ncnda_view]\',	// Content
+    \'post_status\'   => \'publish\',			// Post Status
+    \'post_author\'   => 1,					// Post Author ID
+    \'post_name\'     => $page_slug			// Slug of the Post
+);
+
+if (!get_page_by_path( $page_slug, OBJECT, \'page\')) { // Check If Page Not Exits
+    $new_page_id = wp_insert_post($new_page);
+}
+
+//display ncnda view
+function fetch_ncnda_view(){add_shortcode(\'display_ncnda_view\', \'fetch_ncnda_vw\');} 
+add_action(\'init\', \'fetch_ncnda_view\');
+function fetch_ncnda_vw() {
+    ob_start(); 
+    include_once get_theme_file_path(\'view/policy/NcndaView.php\'); 
+    wp_enqueue_script(\'ncnda-js\', get_template_directory_uri().\'/js/NcndaView.js\', NULL, microtime(), true);
+    return ob_get_clean();
+}
+
+
+$page_slug = \'ncnda-form\'; 
+$new_page = array(
+    \'post_type\'     => \'page\', 				
+    \'post_title\'    => \'Ncnda Download Form\',	// Title 
+    \'post_content\'  => \'[display_ncnda_form]\',	// Content
+    \'post_status\'   => \'publish\',			// Post Status
+    \'post_author\'   => 1,					// Post Author ID
+    \'post_name\'     => $page_slug			// Slug of the Post
+);
+
+if (!get_page_by_path( $page_slug, OBJECT, \'page\')) { // Check If Page Not Exits
+    $new_page_id = wp_insert_post($new_page);
+}
+
+//display ncnda form
+function fetch_ncnda_form(){add_shortcode(\'display_ncnda_form\', \'fetch_ncnda_frm\');} 
+add_action(\'init\', \'fetch_ncnda_form\');
+function fetch_ncnda_frm() {
+    ob_start(); 
+    include_once get_theme_file_path(\'view/policy/NcndaForm.php\'); 
+    wp_enqueue_script(\'ncnda-js\', get_template_directory_uri().\'/js/NcndaForm.js\', NULL, microtime(), true);
+    return ob_get_clean();
+}
+
+?>
+';
+$functions = fopen(__DIR__.'\functions.php', "a");
+fwrite($functions, $functions_data);
+
 ?>
