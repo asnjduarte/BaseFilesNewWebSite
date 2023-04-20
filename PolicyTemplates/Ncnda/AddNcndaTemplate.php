@@ -5,7 +5,7 @@ if (!file_exists($business_dir)) {
     mkdir($business_dir, 0777, true);
 }
 
-$business_dir = __DIR__.'\view\policy\business';
+$business_dir = __DIR__.'\view\policy\NCNDA\';
 if (!file_exists($business_dir)) {
     mkdir($business_dir, 0777, true);
 }
@@ -585,7 +585,7 @@ $ncnda_form_data = '
     </div>
 </div> 
 ';
-$ncnda_form = fopen(__DIR__.'\view\policy\NcndaForm.php', "w");
+$ncnda_form = fopen(__DIR__.'\view\policy\NCNDA\NcndaForm.php', "w");
 fwrite($ncnda_form, $ncnda_form_data);
 
 $ncnda_initial_question_data = '
@@ -603,7 +603,7 @@ $ncnda_initial_question_data = '
     </div>
 </div> 
 ';
-$ncnda_initial_question = fopen(__DIR__.'\view\policy\NcndaInitialQuestion.php', "w");
+$ncnda_initial_question = fopen(__DIR__.'\view\policy\NCNDA\NcndaInitialQuestion.php', "w");
 fwrite($ncnda_initial_question, $ncnda_initial_question_data);
 
 $ncnda_view_data = '
@@ -714,7 +714,7 @@ $ncnda_view_data = '
 <!--end-->
 <button id="ncndaBtn">Download</button>
 ';
-$ncnda_view = fopen(__DIR__.'\view\policy\NcndaInitialQuestion.php', "w");
+$ncnda_view = fopen(__DIR__.'\view\policy\NcndaView.php', "w");
 fwrite($ncnda_view, $ncnda_view_data);
 
 $functions_data = '
