@@ -1,4 +1,8 @@
 <?php
+$event_dir = __DIR__.'\view\event';
+if (!file_exists($event_dir)) {
+    mkdir($event_dir, 0777, true);
+}
 
 $events_ajax_data = '
 /*Start EVENTS - add code to AjaxCalls*/
