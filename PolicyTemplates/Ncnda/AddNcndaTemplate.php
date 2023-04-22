@@ -5,9 +5,9 @@ if (!file_exists($business_dir)) {
     mkdir($business_dir, 0777, true);
 }
 
-$business_dir = __DIR__.'\view\policy\NCNDA\';
-if (!file_exists($business_dir)) {
-    mkdir($business_dir, 0777, true);
+$ncnda_dir = __DIR__.'\view\policy\NCNDA';
+if (!file_exists($ncnda_dir)) {
+    mkdir($ncnda_dir, 0777, true);
 }
 
 $ajax_ncnda_data = '
