@@ -399,7 +399,6 @@ include_once get_theme_file_path("model/commonFunctions/Sanitize.php");
 include_once get_theme_file_path("model/HeaderMenu.php"); 
 include_once get_theme_file_path("model/company/Company.php"); 
 
-
 class Factory {
 
     public function __construct(){}
@@ -916,6 +915,10 @@ class Sanitize {
 
     public function __construct(){}
 
+    public static function onlyNumbers($val){
+        self::$val = preg_replace("/[^0-9]/", \'\', $val);
+        return self::$val;
+    }
     public static function cleanNumeric($val){
         self::$val = preg_replace("/[^0-9()]/", \'\', $val);
         return self::$val;
@@ -940,10 +943,9 @@ class Sanitize {
         self::$val = preg_replace(\'/[^_0-9A-Za-záíéóúñÁÍÉÓÚÑ!.?;:=\- \/]/\', \'\', $val);
         return self::$val;
     }
-    
     public static function cleanLocation($val) {
-	self::$val = preg_replace(\'/[^0-9A-Za-záíéóúñÁÍÉÓÚÑ#.,\- ]/\', \'\', $val);
-	return self::$val;
+        self::$val = preg_replace(\'/[^0-9A-Za-záíéóúñÁÍÉÓÚÑ\/#.,\- ]/\', \'\', $val);
+        return self::$val;
     }
     
     public static function validateDate($date, $format = \'Y-m-d\') {
