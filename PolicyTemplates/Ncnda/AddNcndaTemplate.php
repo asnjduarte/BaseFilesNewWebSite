@@ -432,19 +432,75 @@ class Businesses {
     }
 
     public function getBusinessId(){return $this->businessId;}
-    public function setBusinessId($businessId){$this->businessId = $businessId;}
+    public function setBusinessId($businessId){
+        $businessId = filter_var($businessId, FILTER_SANITIZE_NUMBER_INT);
+        if ($businessId < 0 || $businessId > 1000000 || empty($businessId))  
+            $businessId = 1;
+        $this->businessId = $businessId;
+    }
     public function getBName(){return $this->bName;}
-    public function setBName($bName){$this->bName = $bName;}
+    public function setBName($bName){
+        if (strlen($bName) > 50)
+            $bName = substr($bName,0, 50);
+        $bName = sanitize_text_field($bName);
+        $bName = Sanitize::cleanTextNoNumberNoSpecial($bName);
+        if(empty($bName)) {
+            error_log('Businesses.php - setBName did not receive the correct input ' . $bName);
+            throw new Exception('Businesses.php - setBName function with value of bName did not receive the correct input');
+        } 
+        $this->bName = $bName;
+    }
     public function getBAddr(){return $this->bAddr;}
-    public function setBAddr($bAddr){$this->bAddr = $bAddr;}
+    public function setBAddr($bAddr){
+        if (strlen($bAddr) > 55)
+            $bAddr = substr($bAddr,0, 55);
+        $bAddr = sanitize_text_field($bAddr);
+        $bAddr = Sanitize::cleanLocation($bAddr);
+        if(empty($bAddr)) {
+            error_log('Businesses.php - setBAddr did not receive the correct input ' . $bAddr);
+            throw new Exception('Businesses.php - setBAddr function with value of bAddr did not receive the correct input');
+        }
+        $this->bAddr = $bAddr;
+    }
     public function getBAddrNum(){return $this->bAddrNum;}
-    public function setBAddrNum($bAddrNum){$this->bAddrNum = $bAddrNum;}
+    public function setBAddrNum($bAddrNum){
+        $bAddrNum = filter_var($bAddrNum, FILTER_SANITIZE_NUMBER_INT);
+        if ($bAddrNum < 0 || $bAddrNum > 1000000) {
+            error_log('Businesses.php - setBAddrNum did not receive the correct input ' . $bAddrNum);
+            throw new Exception('Businesses.php - setBAddrNum function with value of bAddrNum did not receive the correct input');
+        }
+        $this->bAddrNum = $bAddrNum;
+    }
     public function getBZip(){return $this->bZip;}
-    public function setBZip($bZip){$this->bZip = $bZip;}
+    public function setBZip($bZip){
+        if (strlen($bZip) > 20)
+            $bZip = substr($bZip,0, 20);
+        $bZip = sanitize_text_field($bZip);
+        $bZip = Sanitize::cleanNumeric($bZip);
+        if(empty($bZip)) {
+            error_log('Businesses.php - setBZip did not receive the correct input ' . $bZip);
+            throw new Exception('Businesses.php - setBZip function with value of bZip did not receive the correct input');
+        }
+        $this->bZip = $bZip;
+    }
     public function getCityId(){return $this->cityId;}
-    public function setCityId($cityId){$this->cityId = $cityId;}
+    public function setCityId($cityId){
+        $cityId = filter_var($cityId, FILTER_SANITIZE_NUMBER_INT);
+        $cityId = Sanitize::onlyNumbers($cityId);
+        if ($cityId > 1000000)    {
+            error_log('Businesses.php - setCityId function with value of city id received an incorrect of: ' . $cityId);
+            throw new Exception('setCityId function with value of city id did not receive correct input');
+        }
+        $this->cityId = $cityId;
+    }
     public function getIsActive(){return $this->isActive;}
-    public function setIsActive($isActive){$this->isActive = $isActive;}
+    public function setIsActive($isActive){
+        $isActive = filter_var($isActive, FILTER_SANITIZE_NUMBER_INT); 
+        if ($isActive < -1 || $isActive > 1 || strlen($isActive) < 1)    {
+           $isActive = 1;
+        }
+        $this->isActive = $isActive;
+    }
 
     public function getBusinessesInfoDb() {
         try { 
