@@ -202,7 +202,7 @@ public static function createLocation(){
     return new Location();
 }
 ';
-$factory = fopen(__DIR__.'\js\NcndaForm.js', "w");
+$factory = fopen(__DIR__.'\commonFunctions\Factory.php', "a");
 fwrite($factory, $factory_data);
 
 ?>
